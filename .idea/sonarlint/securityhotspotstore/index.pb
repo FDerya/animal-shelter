@@ -19,15 +19,7 @@ N
 .src/main/java/repository/AnimalRepository.java,5\a\5a07280d96510da2443d10c3b94472c360ff5ad7
 g
 7src/main/java/repository/AdoptionRequestRepository.java,b\9\b9fbff575329adc0ed3c2e99674529f2ce7e01a2
-\
-,src/main/java/controller/UserController.java,3\a\3ac406ab7fd0ec369e673e77f88c52d3f53cf48f
-^
-.src/main/java/controller/AnimalController.java,3\8\387934cecb496ffc6bc649d75d4c4eda454a6677
-g
-7src/main/java/controller/AdoptionRequestController.java,2\3\23b047f39a7c257b89cb0c3fa348162cdbc1e8bd
 R
 "src/main/java/dao/AbstractDAO.java,2\6\260968d353cca7c1a065d93d7cf11c3b67096869
 O
 src/main/java/dao/DBAccess.java,8\4\846e0b560547868ce7b725191bf69556a9670edf
-N
-src/main/java/model/Admin.java,2\a\2a8af0e7500c60890bbb75ce444c327cfb2fa4f6
