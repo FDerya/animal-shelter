@@ -5,25 +5,26 @@ import java.util.Date;
 public class AdoptionRequest {
 
     // Attributes
-    private  int idAdoption;
-    private  int idUser;
-    private int idAnimal;
+    private int idAdoption;
+    private User user;
+    private Animal animal;
     private Date requestDate;
     private String status;
 
 
     // constructors
-    public AdoptionRequest(int idAdoption, int idUser, int idAnimal, Date requestDate, String status){
+    public AdoptionRequest(int idAdoption, User user, Animal animal, Date requestDate, String status) {
         this.idAdoption = idAdoption;
-        this.idUser = idUser;
-        this.idAnimal = idAnimal;
-        this.requestDate =requestDate;
+        this.user = user;
+        this.animal = animal;
+        this.requestDate = requestDate;
         this.status = status;
 
 
     }
-    
+
 // Getters & Setters
+
 
     public int getIdAdoption() {
         return idAdoption;
@@ -33,20 +34,20 @@ public class AdoptionRequest {
         this.idAdoption = idAdoption;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getIdAnimal() {
-        return idAnimal;
+    public Animal getAnimal() {
+        return animal;
     }
 
-    public void setIdAnimal(int idAnimal) {
-        this.idAnimal = idAnimal;
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     public Date getRequestDate() {
@@ -64,13 +65,13 @@ public class AdoptionRequest {
     public void setStatus(String status) {
         this.status = status;
     }
-// Methode
+
     @Override
     public String toString() {
         return "AdoptionRequest{" +
                 "idAdoption=" + idAdoption +
-                ", idUser=" + idUser +
-                ", idAnimal=" + idAnimal +
+                ", user=" + user +
+                ", animal=" + animal +
                 ", requestDate=" + requestDate +
                 ", status='" + status + '\'' +
                 '}';
