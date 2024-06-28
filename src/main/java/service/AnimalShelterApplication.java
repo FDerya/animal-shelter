@@ -11,6 +11,7 @@ public class AnimalShelterApplication {
     public static void main(String[] args) {
 
 
+
         DBAccess dbAccess = new DBAccess("animalshelter", "root", "123@123AS");
 
         // open dbAccess
@@ -22,6 +23,7 @@ public class AnimalShelterApplication {
         User newUser = new User("fatma.tatar@.com", "300", "admin");
         userDAO.storeUser(newUser);
         System.out.println("add user" + newUser);
+
 
 
         // Test om User met id op te halen
