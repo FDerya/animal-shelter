@@ -1,6 +1,16 @@
 
-m	java:S106"+Replace this use of System.out by a logger.(¿â‚™8ÇòÔ…2J$5eeac743-0f4b-4e1e-ba73-b0ae71bcd04d
-r	java:S106"+Replace this use of System.out by a logger.(ÑÕ§ïşÿÿÿÿ8ÇòÔ…2J$4c892807-cf5c-419a-b97c-734a70a26336
-r	java:S106 "+Replace this use of System.out by a logger.(éâ÷¨úÿÿÿÿ8ÇòÔ…2J$085e76de-370b-43bd-b3b6-02df69799a96
-r	java:S106""+Replace this use of System.out by a logger.(¡Ï³÷ûÿÿÿÿ8ÇòÔ…2J$e3f272c4-3128-494b-9caa-e7ad6c61a4b6
-r	java:S106'"+Replace this use of System.out by a logger.(‹Ç©ãúÿÿÿÿ8‘ÇòÔ…2J$b37ea302-feb7-4612-9e5e-ab9df15d9764
+
+java:S2259D"MA "NullPointerException" could be thrown; "retrievedAnimal" is nullable here.(æ›…8Åã¿ş…2J$26daa9bc-9682-4622-b85c-77732a91c3e5
+r	java:S106"+Replace this use of System.out by a logger.(Ñ¥ñúûÿÿÿÿ8ß™Öı…2J$d6f320c8-4599-403a-9279-ec0fb9fb0872
+m	java:S106"+Replace this use of System.out by a logger.(¿â‚™8ÒÜ¾ş…2J$0e7bc116-78ad-4d0d-88cb-4887571b37c5
+r	java:S106""+Replace this use of System.out by a logger.(ÑÕ§ïşÿÿÿÿ8ÓÜ¾ş…2J$362f88da-573e-4779-a66a-4deb53f6eca0
+r	java:S106%"+Replace this use of System.out by a logger.(éâ÷¨úÿÿÿÿ8ÓÜ¾ş…2J$f1d45741-3518-4d53-a6ac-aa2adb392a9b
+r	java:S106'"+Replace this use of System.out by a logger.(¡Ï³÷ûÿÿÿÿ8ÓÜ¾ş…2J$9ccd2fc5-1afc-4bd6-b078-f24baf11344b
+r	java:S106,"+Replace this use of System.out by a logger.(‹Ç©ãúÿÿÿÿ8ÔÜ¾ş…2J$61be7fb0-2791-44d9-aa57-0471c909e824
+m	java:S1062"+Replace this use of System.out by a logger.(ôş‚§8ÔÜ¾ş…2J$2d6ea0f0-ed99-4e0e-b1b4-41fbdb1c4fee
+G	java:S1065"+Replace this use of System.out by a logger.(ùô8ÜáÃş…2
+G	java:S106:"+Replace this use of System.out by a logger.(ê¡æú8İáÃş…2
+L	java:S106<"+Replace this use of System.out by a logger.(åæ–‡üÿÿÿÿ8ŞáÃş…2
+L	java:S106?"+Replace this use of System.out by a logger.(´ºµ¥øÿÿÿÿ8ßáÃş…2
+L	java:S106A"+Replace this use of System.out by a logger.(õ’õĞùÿÿÿÿ8ááÃş…2
+L	java:S106E"+Replace this use of System.out by a logger.(§ò øÿÿÿÿ8ááÃş…2
