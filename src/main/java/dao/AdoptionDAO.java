@@ -83,6 +83,7 @@ public class AdoptionDAO extends AbstractDAO {
         }
     }
 
+
     public List<AdoptionRequest> getAllAdoption() {
         List<AdoptionRequest> adoption = new ArrayList<>();
         String sql = "SELECT * FROM adoptionrequest";
