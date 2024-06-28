@@ -23,3 +23,9 @@ R
 "src/main/java/dao/AbstractDAO.java,2\6\260968d353cca7c1a065d93d7cf11c3b67096869
 O
 src/main/java/dao/DBAccess.java,8\4\846e0b560547868ce7b725191bf69556a9670edf
+P
+ src/main/java/dao/AnimalDAO.java,7\d\7db70a0a7e5c5bfb1d58066a29beff9786094e65
+\
+,src/main/java/controller/UserController.java,3\a\3ac406ab7fd0ec369e673e77f88c52d3f53cf48f
+R
+"src/main/java/dao/AdoptionDAO.java,1\4\14f3c759c52b6f2ab8154b7fbb1a9bcfee394f19

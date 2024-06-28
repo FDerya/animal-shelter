@@ -1,9 +1,9 @@
 
 
-java:S1192"LDefine a constant instead of duplicating this literal "SQL error: " 5 times.(ßÜ¡å8‚‹—Õ…2J$aec4d7b1-9a05-483c-a65a-fe94f0dda862
-m	java:S106"+Replace this use of System.out by a logger.(ßÜ¡å8‡‹—Õ…2J$1b2c63bd-a65e-44bc-a838-7badec5fa0f6
-r	java:S106+"+Replace this use of System.out by a logger.(œ¹‘şÿÿÿÿ8‰‹—Õ…2J$b99cffe6-e2f5-4706-9853-150d8846709b
-m	java:S106."+Replace this use of System.out by a logger.(ßÜ¡å8‰‹—Õ…2J$21b8b43d-af8d-4892-b2e3-1e76e61992be
-m	java:S106>"+Replace this use of System.out by a logger.(ßÜ¡å8‹‹—Õ…2J$30cc786d-984a-4a91-a681-2d886a9d145b
-m	java:S106J"+Replace this use of System.out by a logger.(ßÜ¡å8‹—Õ…2J$fd167176-5390-4e79-ace9-863ad9ec636e
-m	java:S106^"+Replace this use of System.out by a logger.(ßÜ¡å8‘‹—Õ…2J$07153963-b92f-4bbf-9e8e-e8a35d24b352
+java:S1192"LDefine a constant instead of duplicating this literal "SQL error: " 5 times.(ßÜ¡å8‚‹—Õ…2J$777d6dbf-5b67-409d-ac01-d8538901aaeb
+m	java:S106"+Replace this use of System.out by a logger.(ßÜ¡å8‡‹—Õ…2J$f8794f11-944e-4cb9-878c-86c45cddc9a7
+r	java:S106+"+Replace this use of System.out by a logger.(œ¹‘şÿÿÿÿ8‰‹—Õ…2J$2683d1fe-dfd3-48f2-ae8c-ed51b1757903
+m	java:S106."+Replace this use of System.out by a logger.(ßÜ¡å8‰‹—Õ…2J$15c9cc6a-3a32-451f-8c55-643122637c85
+m	java:S106>"+Replace this use of System.out by a logger.(ßÜ¡å8‹‹—Õ…2J$9a42a36d-96d0-4940-b2b2-f24e8ab1cd06
+m	java:S106J"+Replace this use of System.out by a logger.(ßÜ¡å8‹—Õ…2J$73bd0d61-19e3-4b1b-bd87-08f18f440b8a
+m	java:S106^"+Replace this use of System.out by a logger.(ßÜ¡å8‘‹—Õ…2J$a9490e71-cf5b-4434-abcf-95ba4ecb85a7
