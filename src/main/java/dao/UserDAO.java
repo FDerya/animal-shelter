@@ -47,6 +47,29 @@ public class UserDAO extends AbstractDAO {
         }
         return result;
     }
+     // Get user met password
+    public User getUserByPassword(String password) {
+        String sql = "SELECT * FROM user WHERE password = ?";
+        User result = null;
+        try {
+            setupPreparedStatement(sql);
+            preparedStatement.setString(1, password);
+            ResultSet resultSet = executeSelectStatement();
+            if (resultSet.next()) {
+                int idUser = resultSet.getInt("id");
+                String email = resultSet.getString("email");
+                String role = resultSet.getString("role");
+                result = new User(idUser, email, password, role);
+
+            } else {
+                System.out.println("User with this password does not exist");
+            }
+        } catch (SQLException sqlException) {
+            System.out.println("SQL error: " + sqlException.getMessage());
+        }
+        return result;
+    }
+
 
     // Update method
     public void updateUser(User user) {

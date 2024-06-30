@@ -35,6 +35,15 @@ public class AnimalShelterApplication {
         userDAO.updateUser(retrievedUser);
         System.out.println("Updated User: " + userDAO.getUserById(retrievedUser.getIdUser()));
 
+        // Get User by password
+        User userByPassword = userDAO.getUserByPassword("300");
+        if (userByPassword != null) {
+            System.out.println("Retrieved User by password: " + userByPassword);
+        } else {
+            System.out.println("No user found with the given password");
+        }
+
+
         // Test om alle Users op te halen
         System.out.println("All Users:");
         for (User user : userDAO.getAllUsers()) {

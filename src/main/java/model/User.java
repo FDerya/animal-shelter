@@ -17,6 +17,7 @@ public class User {
         this.role = role;
 
     }
+
     public User (String email, String password, String role){
         this(0,email,password,role);
     }
@@ -54,3 +55,4 @@ public class User {
         this.role = role;
     }
 }
+

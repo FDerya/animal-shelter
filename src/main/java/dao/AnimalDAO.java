@@ -17,7 +17,7 @@ public class AnimalDAO extends AbstractDAO {
 
 
     public void storeAnimal(Animal animal) {
-        String sql = "INSERT INTO animal (name, species,age, gender, description,status) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO animal (name, species,age, gender, description,status) VALUES (?,?,?,?,?,?)";
         try {
             setupPreparedStatementWithKey(sql);
             preparedStatement.setString(1, animal.getName());
