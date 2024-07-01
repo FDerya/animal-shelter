@@ -1,0 +1,73 @@
+package animal.shelter.dao;
+
+import animal.shelter.model.Animal;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
+import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+
+public class JdbcAnimalDAO implements AnimalDAO {
+
+    private JdbcTemplate jdbcTemplate;
+
+    public JdbcAnimalDAO(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+
+    }
+
+
+    @Override
+    public void saveAnimal(Animal animal) {
+        String sql = "INSERT INTO animal(name, species, age, gender, description, status) VALUES (?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, animal.getName(), animal.getSpecies(), animal.getGender(), animal.getDescription(), animal.getStatus());
+
+
+    }
+
+    @Override
+    public Optional<Animal> findAnimalById(int idAnimal) {
+        String sql = "SELECT * FROM Animal WHERE id = ?";
+        List<Animal> resultList = jdbcTemplate.query(sql, new AnimalRowMapper(), idAnimal);
+        if (resultList.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(resultList.get(0));
+
+        }
+
+    }
+
+    @Override
+    public List<Animal> findAllAnimal() {
+        String sql = "SELECT * FROM Animal";
+        return jdbcTemplate.query(sql, new AnimalRowMapper());
+
+    }
+
+    @Override
+    public void deleteAnimal(Animal animal) {
+        String sql = "DELETE FROM animal WHERE id = ?";
+        jdbcTemplate.update(sql, animal.getIdAnimal());
+    }
+
+    private static class AnimalRowMapper implements RowMapper<Animal> {
+        @Override
+        public Animal mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Animal result = new Animal(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("species"),
+                    rs.getInt("age"),
+                    rs.getString("gender"),
+                    rs.getString("description"),
+                    rs.getString("status"));
+            return result;
+        }
+    }
+
+}
+

@@ -69,8 +69,6 @@ public class JdbcAdoptionRequestDAO implements AdaptionRequestDAO {
             int idAnimal = rs.getInt("idAnimal");
             Date requestDate = rs.getDate("requestDate");
             String status = rs.getString("status");
-
-
             return null;
         }
 

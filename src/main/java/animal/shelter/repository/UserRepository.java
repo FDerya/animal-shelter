@@ -2,6 +2,7 @@ package animal.shelter.repository;
 
 import animal.shelter.dao.JdbcUserDAO;
 import animal.shelter.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,9 +11,10 @@ import java.util.Optional;
 public class UserRepository {
 
     private JdbcUserDAO jdbcUserDAO;
-    private UserRepository(JdbcUserDAO jdbcUserDAO){
-        this.jdbcUserDAO = jdbcUserDAO;
 
+    @Autowired
+    public UserRepository(JdbcUserDAO jdbcUserDAO){
+        this.jdbcUserDAO = jdbcUserDAO;
 
     }
 
@@ -20,7 +22,6 @@ public class UserRepository {
         jdbcUserDAO.save(user);
 
     }
-
     public Optional<User> findUserById(int idUser){
         return jdbcUserDAO.findUserById(idUser);
 

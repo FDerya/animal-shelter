@@ -8,5 +8,4 @@ public class AnimalShelterApplication {
         SpringApplication.run(AnimalShelterApplication.class, args);
     }
 
-
 }

@@ -57,6 +57,7 @@ public class JdbcUserDAO implements UserDAO {
     }
 
 
+
     private class UserRowMapper implements RowMapper<User> {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {

@@ -20,14 +20,11 @@ public class UserService {
   }
     public void saveUser(User user){
       userRepository.saveUser(user);
-
     }
     public Optional<User> findUserById(int idUser){
      return userRepository.findUserById(idUser);
 
-
     }
-
     public List<User>  findAllUser(){
      return userRepository.findAllUser();
     }

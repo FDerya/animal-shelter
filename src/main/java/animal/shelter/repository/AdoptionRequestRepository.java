@@ -20,7 +20,6 @@ public class AdoptionRequestRepository {
         return jdbcAdoptionRequestDAO.findAdoptionById(idAdoption);
 
     }
-
     public List<AdoptionRequest> findAllAdoption() {
         return jdbcAdoptionRequestDAO.findAllAdoption();
     }
