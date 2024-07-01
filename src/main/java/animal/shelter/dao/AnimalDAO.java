@@ -1,0 +1,17 @@
+package animal.shelter.dao;
+
+import animal.shelter.model.Animal;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface AnimalDAO {
+
+    void saveAnimal(Animal animal);
+    Optional<Animal> findAnimalById(int idAnimal);
+    List<Animal> findAllAnimal();
+    void deleteAnimal(Animal animal);
+
+
+    }
+
