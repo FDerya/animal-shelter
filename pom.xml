@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>dt23</groupId>
-    <artifactId>Gabbers</artifactId>
+    <artifactId>animal-shelter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Gabbers</name>
-    <description>Gabbers</description>
+    <description>animal-shelter</description>
     <properties>
         <java.version>17</java.version>
     </properties>
