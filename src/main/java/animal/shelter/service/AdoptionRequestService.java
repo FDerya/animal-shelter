@@ -33,7 +33,7 @@ public class AdoptionRequestService {
         adoptionRequestRepository.deleteAdoption(adoptionRequest);
     }
 
-    public void updateAdoption(AdoptionRequest adoptionRequest){
+    public void updateAdoption(AdoptionRequest adoptionRequest) {
         adoptionRequestRepository.updateAdoption(adoptionRequest);
     }
 }
