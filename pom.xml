@@ -8,10 +8,10 @@
         <version>3.2.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>dt23</groupId>
+    <groupId>animal.shelter</groupId>
     <artifactId>animal-shelter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Gabbers</name>
+    <name>animal-shelter</name>
     <description>animal-shelter</description>
     <properties>
         <java.version>17</java.version>
@@ -99,3 +99,4 @@
     </build>
 
 </project>
+
