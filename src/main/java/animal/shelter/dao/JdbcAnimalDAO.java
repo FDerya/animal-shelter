@@ -47,6 +47,15 @@ public class JdbcAnimalDAO implements AnimalDAO {
         return jdbcTemplate.query(sql, new AnimalRowMapper());
 
     }
+    @Override
+    public void updateAnimal(Animal animal) {
+        String sql = "UPDATE Animal SET name = ?, species = ?, age = ?, gender = ?, description =?, status = ?";
+        jdbcTemplate.update(sql, animal.getName(),
+                animal.getSpecies(), animal.getAge(),
+                animal.getGender(),
+                animal.getDescription(),
+                animal.getStatus());
+    }
 
     @Override
     public void deleteAnimal(Animal animal) {
