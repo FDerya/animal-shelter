@@ -7,13 +7,15 @@ import java.util.Optional;
 
 public interface UserDAO {
 
-    void save(User user);
+    void saveUser(User user);
 
     Optional<User> findUserById(int idUser);
 
     List<User> findAllUser();
 
-    void delete(User user);
+    void deleteUser(User user);
+
+    void updateUser(User user);
 
 
 }

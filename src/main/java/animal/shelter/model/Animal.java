@@ -33,6 +33,10 @@ public class Animal {
         this.status = status;
     }
 
+    public Animal() {
+
+    }
+
     //Methode
     @Override
     public String toString() {

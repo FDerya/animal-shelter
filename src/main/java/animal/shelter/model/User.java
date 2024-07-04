@@ -18,10 +18,12 @@ public class User {
 
     }
 
-    public User (String email, String password, String role){
-        this(0,email,password,role);
+    public User() {
+
     }
-     // Getters & Setters
+
+
+    // Getters & Setters
 
     public int getIdUser() {
         return idUser;
