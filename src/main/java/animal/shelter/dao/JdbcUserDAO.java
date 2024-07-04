@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+
 @Repository
 public class JdbcUserDAO implements UserDAO {
     private JdbcTemplate jdbcTemplate;
@@ -21,7 +22,7 @@ public class JdbcUserDAO implements UserDAO {
     }
 
     @Override
-    public void save(User user) {
+    public void saveUser(User user) {
         String sql = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, user.getEmail(), user.getPassword(), user.getRole());
 
@@ -29,7 +30,7 @@ public class JdbcUserDAO implements UserDAO {
 
     @Override
     public Optional<User> findUserById(int idUser) {
-        String sql = "SELECT * FROM user WHERE id = ?";
+        String sql = "SELECT * FROM user WHERE idUser = ?";
         List<User> resultList = jdbcTemplate.query(sql, new UserRowMapper(), idUser);
         return resultList.isEmpty() ? Optional.empty() : Optional.of(resultList.get(0));
 
@@ -41,31 +42,37 @@ public class JdbcUserDAO implements UserDAO {
         return jdbcTemplate.query(sql, new UserRowMapper());
     }
 
-    @Override
-    public void delete(User user) {
-        String sql = "DELETE FROM User WHERE id = ?";
-        jdbcTemplate.update(sql, user.getIdUser());
+    /**
+     * First, it deletes all adoption requests related to the user to prevent foreign key constraint violations.
+     * Then, it deletes the user from the 'User' table.
+     * This approach ensures that there are no orphaned foreign key references when a user is deleted.
+     */
+    public void deleteUser(User user) {
+        String deleteAdoptionRequestsSql = "DELETE FROM adoption_request WHERE idUser = ?";
+        jdbcTemplate.update(deleteAdoptionRequestsSql, user.getIdUser());
 
+        String deleteUserSql = "DELETE FROM User WHERE idUser = ?";
+        jdbcTemplate.update(deleteUserSql, user.getIdUser());
     }
 
+
     // Update method
-    public void update(User user) {
-        String sql = "UPDATE user SET email = ?, password = ?, role = ? WHERE id = ?";
+    public void updateUser(User user) {
+        String sql = "UPDATE User SET email = ?, password = ?, role = ? WHERE idUser = ?";
         jdbcTemplate.update(sql, user.getEmail(), user.getPassword(), user.getRole(), user.getIdUser());
 
 
     }
 
 
-
     private class UserRowMapper implements RowMapper<User> {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-            User user = new User(rs.getInt("id"),
+            User user = new User(rs.getInt("idUser"),
                     rs.getString("email"),
                     rs.getString("password"),
                     rs.getString("role"));
-            user.setIdUser(rs.getInt("id"));
+            user.setIdUser(rs.getInt("idUser"));
             return user;
         }
 
