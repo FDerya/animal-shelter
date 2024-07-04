@@ -2,6 +2,8 @@ package animal.shelter.dao;
 
 import animal.shelter.model.AdoptionRequest;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
