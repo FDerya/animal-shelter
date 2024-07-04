@@ -31,7 +31,7 @@ public class JdbcAnimalDAO implements AnimalDAO {
 
     @Override
     public Optional<Animal> findAnimalById(int idAnimal) {
-        String sql = "SELECT * FROM Animal WHERE id = ?";
+        String sql = "SELECT * FROM animal WHERE idAnimal = ?";
         List<Animal> resultList = jdbcTemplate.query(sql, new AnimalRowMapper(), idAnimal);
         if (resultList.isEmpty()) {
             return Optional.empty();
@@ -44,13 +44,13 @@ public class JdbcAnimalDAO implements AnimalDAO {
 
     @Override
     public List<Animal> findAllAnimal() {
-        String sql = "SELECT * FROM Animal";
+        String sql = "SELECT * FROM animal";
         return jdbcTemplate.query(sql, new AnimalRowMapper());
 
     }
     @Override
     public void updateAnimal(Animal animal) {
-        String sql = "UPDATE Animal SET name = ?, species = ?, age = ?, gender = ?, description =?, status = ?";
+        String sql = "UPDATE animal SET name = ?, species = ?, age = ?, gender = ?, description =?, status = ?";
         jdbcTemplate.update(sql, animal.getName(),
                 animal.getSpecies(), animal.getAge(),
                 animal.getGender(),
@@ -60,7 +60,7 @@ public class JdbcAnimalDAO implements AnimalDAO {
 
     @Override
     public void deleteAnimal(Animal animal) {
-        String sql = "DELETE FROM animal WHERE id = ?";
+        String sql = "DELETE FROM animal WHERE idAnimal = ?";
         jdbcTemplate.update(sql, animal.getIdAnimal());
     }
 
@@ -68,7 +68,7 @@ public class JdbcAnimalDAO implements AnimalDAO {
         @Override
         public Animal mapRow(ResultSet rs, int rowNum) throws SQLException {
             Animal result = new Animal(
-                    rs.getInt("id"),
+                    rs.getInt("idAnimal"),
                     rs.getString("name"),
                     rs.getString("species"),
                     rs.getInt("age"),
