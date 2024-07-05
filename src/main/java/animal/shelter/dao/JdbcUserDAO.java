@@ -42,19 +42,12 @@ public class JdbcUserDAO implements UserDAO {
         return jdbcTemplate.query(sql, new UserRowMapper());
     }
 
-    /**
-     * First, it deletes all adoption requests related to the user to prevent foreign key constraint violations.
-     * Then, it deletes the user from the 'User' table.
-     * This approach ensures that there are no orphaned foreign key references when a user is deleted.
-     */
-    public void deleteUser(User user) {
-        String deleteAdoptionRequestsSql = "DELETE FROM adoption_request WHERE idUser = ?";
-        jdbcTemplate.update(deleteAdoptionRequestsSql, user.getIdUser());
+    @Override
+    public void deleteUser(User user){
+        String sql = "DELETE FROM User WHERE idUser = ?";
+        jdbcTemplate.update(sql, user.getIdUser());
 
-        String deleteUserSql = "DELETE FROM User WHERE idUser = ?";
-        jdbcTemplate.update(deleteUserSql, user.getIdUser());
     }
-
 
     // Update method
     public void updateUser(User user) {
