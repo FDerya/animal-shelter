@@ -71,6 +71,13 @@ public class JdbcUserDAO implements UserDAO {
 
     }
 
+    //findByEmail method searches the database for a user with the given email address and returns the information of that user.
+    public Optional<User> findByEmail(String email) {
+        String sql = "SELECT * FROM user WHERE email = ?";
+        List<User> resultList = jdbcTemplate.query(sql, new UserRowMapper(), email);
+        return resultList.isEmpty() ? Optional.empty() : Optional.of(resultList.get(0));
+    }
+
 }
 
 
