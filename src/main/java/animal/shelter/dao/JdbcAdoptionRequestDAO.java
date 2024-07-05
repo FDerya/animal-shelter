@@ -34,9 +34,6 @@ public class JdbcAdoptionRequestDAO implements AdaptionRequestDAO {
     }
 
 
-
-
-
     @Override
     public Optional<AdoptionRequest> findAdoptionById(int idAdoption) {
         String sql = "SELECT * FROM adoption_request WHERE idAdoption = ?";
@@ -52,18 +49,17 @@ public class JdbcAdoptionRequestDAO implements AdaptionRequestDAO {
 
     @Override
     public void deleteAdoption(AdoptionRequest adoptionRequest) {
-        String deleteAdoptionRequestsSql = "DELETE FROM adoption_request WHERE idUser = ?";
-        jdbcTemplate.update(deleteAdoptionRequestsSql, adoptionRequest.getUser().getIdUser());
-
-        String deleteAdoptionSql = "DELETE FROM adoption_request WHERE idAdoption = ?";
-        jdbcTemplate.update(deleteAdoptionSql, adoptionRequest.getIdAdoption());
+        String sql = "DELETE FROM adoption_request WHERE idAdoption = ?";
+        jdbcTemplate.update(sql, adoptionRequest.getIdAdoption());
     }
+
 
     @Override
     public void updateAdoption(AdoptionRequest adoption) {
         String sql = "UPDATE adoption_request SET idUser = ?, idAnimal = ?, requestDate = ?, status = ? WHERE idAdoption = ?";
         jdbcTemplate.update(sql, adoption.getUser().getIdUser(), adoption.getAnimal().getIdAnimal(), adoption.getRequestDate(), adoption.getStatus(), adoption.getIdAdoption());
     }
+
     private Map<String, Object> mapInsertParameters(AdoptionRequest adoption) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("idUser", adoption.getUser().getIdUser());
