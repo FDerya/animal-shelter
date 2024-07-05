@@ -43,4 +43,9 @@ public class UserRepository {
         jdbcUserDAO.deleteUser(user);
     }
 
+    // Login Service
+    public Optional<User> findByEmail(String email) {
+        return jdbcUserDAO.findByEmail(email);
+
+    }
 }
