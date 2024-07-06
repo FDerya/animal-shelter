@@ -45,7 +45,7 @@ public class UserRepository {
 
     // Login Service
     public Optional<User> findByEmail(String email) {
-        return jdbcUserDAO.findByEmail(email);
+        return jdbcUserDAO.findByEmail(email);  
 
     }
 }

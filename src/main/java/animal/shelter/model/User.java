@@ -10,13 +10,15 @@ public class User {
 
 
     // Constructors
-    public User (int idUser, String email, String password,String role){
+    public User(int idUser, String email, String password, String role) {
         this.idUser = idUser;
         this.email = email;
         this.password = password;
         this.role = role;
 
     }
+    // dbcAdoptionRequestDAO --> mapRow
+    // LoginService --> register
 
     public User() {
 
