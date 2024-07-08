@@ -2,6 +2,7 @@ package animal.shelter.controller;
 
 import animal.shelter.model.Animal;
 import animal.shelter.service.AnimalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,17 @@ public class AnimalController {
         this.animalService = animalService;
     }
 
+
+    @GetMapping("/getAllCats")
+    public List<Animal> getAllCats() {
+        return animalService.getAllCats();
+    }
+
+    @GetMapping("getAllDogs")
+    public List<Animal> getAllDogs(){ return animalService.getAllDogs();}
+
     // Create en Update
-    @PutMapping("/{idAnimal}")
+    @PutMapping("/create/{idAnimal}")
     ResponseEntity<Animal> createAnimal(@RequestBody Animal animal, @PathVariable("idAnimal") int idAnimal) {
         Optional<Animal> optionalAnimal = animalService.findAnimalById(idAnimal);
         if (optionalAnimal.isPresent()) {
@@ -37,7 +47,7 @@ public class AnimalController {
     }
 
     // Read
-    @GetMapping("/{idAnimal}")
+    @GetMapping("/getAnimal/{idAnimal}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable("idAnimal") int idAnimal) {
         Optional<Animal> result = animalService.findAnimalById(idAnimal);
         if (result.isPresent()) {
@@ -53,8 +63,9 @@ public class AnimalController {
     }
 
     // Delete
-    @DeleteMapping("/{idAnimal}")
+    @DeleteMapping("/delete/{idAnimal}")
     public ResponseEntity<Void> deleteAnimal(@PathVariable("idAnimal") int idAnimal) {
+        System.out.println("TEST 1 tesssttt");
         Optional<Animal> result = animalService.findAnimalById(idAnimal);
         if (result.isPresent()) {
             animalService.deleteAnimal(result.get());
@@ -63,6 +74,8 @@ public class AnimalController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+
 }
 
 

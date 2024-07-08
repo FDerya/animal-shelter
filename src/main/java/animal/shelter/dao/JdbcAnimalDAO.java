@@ -64,6 +64,12 @@ public class JdbcAnimalDAO implements AnimalDAO {
         jdbcTemplate.update(sql, animal.getIdAnimal());
     }
 
+    @Override
+    public List<Animal> getAllCats() {
+        String sql = "SELECT * FROM animal WHERE species = 'cat'";
+        return jdbcTemplate.query(sql, new AnimalRowMapper());
+    }
+
     private static class AnimalRowMapper implements RowMapper<Animal> {
         @Override
         public Animal mapRow(ResultSet rs, int rowNum) throws SQLException {

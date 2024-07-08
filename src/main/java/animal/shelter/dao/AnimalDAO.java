@@ -13,5 +13,6 @@ public interface AnimalDAO {
     void deleteAnimal(Animal animal);
     void updateAnimal(Animal animal);
 
-    }
+    List<Animal> getAllCats();
+}
 

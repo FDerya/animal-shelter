@@ -16,6 +16,12 @@ public class AnimalService {
 
     }
 
+    public List<Animal> getAllCats() {
+        return animalRepository.findByType();
+    }
+
+    public List<Animal> getAllDogs(){ return animalRepository.findByType();}
+
 
     public void saveAnimal(Animal animal) {
         animalRepository.saveAnimal(animal);
@@ -37,5 +43,6 @@ public class AnimalService {
     public void deleteAnimal(Animal animal) {
         animalRepository.deleteAnimal(animal);
     }
+
 
 }

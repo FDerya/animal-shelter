@@ -32,4 +32,10 @@ public class AnimalRepository {
     public  void deleteAnimal(Animal animal){
         jdbcAnimalDAO.deleteAnimal(animal);
     }
+
+    public List<Animal> findByType() {
+        return jdbcAnimalDAO.getAllCats();
+    }
+
+
 }
