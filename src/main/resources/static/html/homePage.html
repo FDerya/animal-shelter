@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animal Shelter</title>
-    <link rel="stylesheet" href="/static/animal-shelter/src/main/resources/static/CSS/Animalshelter.css">
+    <link rel="stylesheet" href="/static/animal-shelter/src/main/resources/static/CSS/homePage.css">
 </head>
 <body>
 <header>
@@ -14,7 +14,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Homepage</a></li>
+                <li><a href="homePage.html">Homepage</a></li>
                 <li><a href="honden.html">Honden</a></li>
                 <li><a href="katten.html">Katten</a></li>
                 <li><a href="gastenboek.html">Gastenboek</a></li>
@@ -22,6 +22,10 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+        <div class="auth-buttons">
+            <button id="login-button">Login</button>
+            <button id="logout-button" style="display:none;">Logout</button>
+        </div>
         <div class="social-media">
             <a href="#"><img src="/static/png/Facebook.png" alt="Facebook"></a>
             <a href="#"><img src="/static/png/Twitter.png" alt="Twitter"></a>
@@ -29,18 +33,16 @@
     </div>
 </header>
 <main>
-    <h1>Welkom bij Dierenvrienden</h1>
-    <p>De site voor het vinden van uw nieuwe huisdier en het helpen van dieren in nood.</p>
-    <h2>Goede nieuws!</h2>
-    <p>Onze nieuwste bewoners zijn aangekomen! Kom langs en ontmoet ze. Misschien zit uw nieuwe beste vriend er wel tussen!</p>
-    <h2>Niet geregistreerd? Registreer nu!</h2>
-    <p>Word lid van onze gemeenschap en help dieren een nieuw thuis te vinden.</p>
-    <a href="/html/login.html">Registreer hier</a>
-
-
+    <div class="welcome-section">
+        <h1>Welkom bij Dierenvrienden</h1>
+        <p>De site voor het vinden van uw nieuwe huisdier en het helpen van dieren in nood.</p>
+        <h2>Goede nieuws!</h2>
+        <p>Onze nieuwste bewoners zijn aangekomen! Kom langs en ontmoet ze. Misschien zit uw nieuwe beste vriend er wel tussen!</p>
+    </div>
 </main>
 <footer>
     <p>Animal Shelter © 2024</p>
 </footer>
+<script src="/static/javascript/homePage.js"></script>
 </body>
 </html>

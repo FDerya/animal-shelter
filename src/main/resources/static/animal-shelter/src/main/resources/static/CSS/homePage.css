@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.top-bar {
+    background-color: #5d4037;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+}
+
+.logo img {
+    height: 150px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #3e2723;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.auth-buttons button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #8d6e63;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.auth-buttons button:hover {
+    background-color: #6d4c41;
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.social-media a {
+    margin-left: 10px;
+}
+
+.social-media img {
+    height: 30px;
+}
+
+main {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.welcome-section h1 {
+    color: #5d4037;
+    font-size: 36px;
+}
+
+.welcome-section p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+.cats-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.cat {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+}
+
+.cat img {
+    border-radius: 10px;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.cat h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.cat p {
+    color: #777;
+    font-size: 1em;
+    margin: 0;
+}
+.dogs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.dog {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+}
+
+.dog img {
+    border-radius: 10px;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.dog h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.dog p {
+    color: #777;
+    font-size: 1em;
+    margin: 0;
+}
+
+
+
+
+
