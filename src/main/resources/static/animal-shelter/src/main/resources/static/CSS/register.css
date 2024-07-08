@@ -5,42 +5,54 @@ body {
 }
 
 .top-bar {
-    background-color: #333;
+    background-color: #c4abab;
     color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
+    flex-direction: column;
+    position: relative;
 }
 
-.logo img {
-    height: 200px;
-    align-items: center;
-}
-
-nav ul {
+.top-bar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
+    justify-content: center;
 }
 
-nav ul li {
-    margin: 0 10px;
+.top-bar ul li {
+    margin: 0 20px;
+    text-align: center;
 }
 
-nav ul li a {
-    color: white;
+.top-bar ul li a {
+    color: black;
     text-decoration: none;
     font-weight: bold;
 }
 
-nav ul li a:hover {
+.top-bar ul li a:hover {
     text-decoration: underline;
 }
 
+.logo img {
+    height: 200px;
+    align-self: flex-start;
+}
+
+.social-media {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
 .social-media a {
-    margin: 0 5px;
+    margin-left: 10px;
 }
 
 .social-media img {
@@ -50,6 +62,7 @@ nav ul li a:hover {
 main {
     padding: 20px;
     text-align: center;
+    margin-top: 100px;
 }
 
 footer {
