@@ -6,10 +6,14 @@ public class LoginDTO {
     private String password;
     private String role; // user or admin
 
-    public LoginDTO(String email, String password, String role) {
+    private String token;
+
+
+    public LoginDTO(String email, String password, String role, String token) {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.token = token;
     }
 
     public String getEmail() {
@@ -22,5 +26,13 @@ public class LoginDTO {
 
     public String getRole() {
         return role;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
