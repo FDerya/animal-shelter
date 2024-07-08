@@ -1,54 +1,42 @@
 package animal.shelter.controller;
 
-import animal.shelter.model.LoginDTO;
-import animal.shelter.model.RegisterDTO;
+import animal.shelter.model.User;
 import animal.shelter.service.LoginService;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+@CrossOrigin
 @RestController
 @RequestMapping("/auth")
 public class LoginController {
 
-    private final LoginService loginService;
+    private LoginService loginService;
 
-    @Autowired
-    public LoginController(LoginService loginService) {
+    public LoginController (LoginService loginService) {
         this.loginService = loginService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterDTO registerDTO) {
-        loginService.register(registerDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Registratie geslaagd");
-    }
-
-    @PostMapping("/user-login")
-    public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
-        String result = loginService.login(loginDTO);
-        return getResponseEntity(loginDTO, result);
-    }
-
-    @PostMapping("/admin-login")
-    public ResponseEntity<?> adminLogin(@RequestBody LoginDTO loginDTO) {
-        String result = loginService.adminLogin(loginDTO);
-        return getResponseEntity(loginDTO, result);
-    }
-
-
-    @NotNull
-    private ResponseEntity<?> getResponseEntity(@RequestBody LoginDTO loginDTO, String result) {
-        if (result != null) {
-            String responseBody = "Welkom " + loginDTO.getEmail();
-            return ResponseEntity.status(HttpStatus.OK)
-                    .header("Authorization", "JWT " + result)
-                    .body(responseBody);
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody User user) {
+        boolean result = loginService.login(user.getEmail(), user.getPassword());
+        if (result) {
+            return ResponseEntity.ok("Login Successful");
         } else {
-            String message = "Login niet geslaagd";
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(message);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+        }
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody User user) {
+        user.setRole("user");
+        String result = loginService.register(user);
+        if (result.equals("Registration successful")) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(result);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
         }
     }
 }

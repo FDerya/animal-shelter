@@ -17,7 +17,9 @@ public class UserRepository {
     public UserRepository(JdbcUserDAO jdbcUserDAO) {
         this.jdbcUserDAO = jdbcUserDAO;
 
+
     }
+
 
     public void saveUser(User user) {
         jdbcUserDAO.saveUser(user);
@@ -46,6 +48,7 @@ public class UserRepository {
     // Login Service
     public Optional<User> findByEmail(String email) {
         return jdbcUserDAO.findByEmail(email);  
+
 
     }
 }

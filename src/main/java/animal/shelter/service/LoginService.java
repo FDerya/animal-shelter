@@ -1,43 +1,34 @@
 package animal.shelter.service;
-
-import animal.shelter.model.LoginDTO;
-import animal.shelter.model.RegisterDTO;
 import animal.shelter.model.User;
 import animal.shelter.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+
 public class LoginService {
 
-    private final UserRepository userRepository;
-
+    private  UserRepository userRepository;
+    @Autowired
     public LoginService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public String login(LoginDTO loginDTO) {
-        Optional<User> userOptional = userRepository.findByEmail(loginDTO.getEmail());
-        if (userOptional.isPresent() && userOptional.get().getPassword().equals(loginDTO.getPassword())) {
-            return "Success!";
+    public boolean login(String email, String password) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent() && userOptional.get().getPassword().equals(password)) {
+            return true;
         }
-        return null;
+        return false;
     }
 
-    public String adminLogin(LoginDTO loginDTO) {
-        Optional<User> userOptional = userRepository.findByEmail(loginDTO.getEmail());
-        if (userOptional.isPresent() && userOptional.get().getPassword().equals(loginDTO.getPassword()) && "admin".equals(userOptional.get().getRole())) {
-            return "Success!";
+    public String register(User user) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            return "User already exists";
         }
-        return null;
-    }
-
-    public void register(RegisterDTO registerDTO) {
-        User user = new User();
-        user.setEmail(registerDTO.getEmail());
-        user.setPassword(registerDTO.getPassword());
-        user.setRole(registerDTO.getRole());
         userRepository.saveUser(user);
+        return "Registration successful";
     }
 }

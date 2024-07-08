@@ -1,23 +1,15 @@
 package animal.shelter.model;
 
-
 public class LoginDTO {
 
     private String email;
     private String password;
+    private String role; // user or admin
 
-    public LoginDTO(String email, String password) {
+    public LoginDTO(String email, String password, String role) {
         this.email = email;
         this.password = password;
-
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        this.role = role;
     }
 
     public String getEmail() {
@@ -26,13 +18,9 @@ public class LoginDTO {
 
     public String getPassword() {
         return password;
-
     }
 
-    @Override
-    public String toString() {
-        return "Login{" +
-                "email='" + email + '\'' +
-                '}';
+    public String getRole() {
+        return role;
     }
 }
