@@ -1,12 +1,13 @@
 package animal.shelter.controller;
 
+import animal.shelter.model.LoginDTO;
 import animal.shelter.model.User;
 import animal.shelter.service.LoginService;
+import animal.shelter.utility.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 @CrossOrigin
 @RestController
@@ -14,16 +15,19 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     private LoginService loginService;
+    private JWTUtil jwtUtil;
 
-    public LoginController (LoginService loginService) {
+    @Autowired
+    public LoginController(LoginService loginService, JWTUtil jwtUtil) {
         this.loginService = loginService;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
-        boolean result = loginService.login(user.getEmail(), user.getPassword());
-        if (result) {
-            return ResponseEntity.ok("Login Successful");
+    public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) {
+        String token = loginService.login(loginDTO);
+        if (token != null) {
+            return ResponseEntity.ok(token);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
         }
@@ -39,4 +43,7 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
         }
     }
+
+
+
 }
