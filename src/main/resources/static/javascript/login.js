@@ -19,9 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageDiv = document.getElementById('message');
 
         if (response.ok) {
-            // Mock token storage as the API does not return a token
-            const mockToken = "mockToken123";
-            sessionStorage.setItem('token', mockToken);
+            const token = await response.text(); // Get the token from the response
+            sessionStorage.setItem('token', token); // Store the token in sessionStorage
             alert("Login successful. Redirecting to homepage...");
             window.location.href = 'homePage.html';
         } else if (response.status === 401) {

@@ -37,17 +37,24 @@ document.addEventListener('DOMContentLoaded', async () => {
             const catName = document.createElement('h2');
             catName.textContent = cat.name;
 
-
             const catDescription = document.createElement('p');
             catDescription.textContent = `Personality: ${cat.description}`;
 
             const catAge = document.createElement('p');
             catAge.textContent = `Age: ${cat.age}`;
 
+            const adoptButton = document.createElement('button');
+            adoptButton.textContent = 'Adopt';
+            adoptButton.classList.add('adopt-button');
+            adoptButton.onclick = () => {
+                window.location.href = `adoptCat.html?animalId=${cat.idAnimal}`;
+            };
+
             catDiv.appendChild(catImage);
             catDiv.appendChild(catName);
             catDiv.appendChild(catAge);
             catDiv.appendChild(catDescription);
+            catDiv.appendChild(adoptButton);
 
             catsListDiv.appendChild(catDiv);
         });

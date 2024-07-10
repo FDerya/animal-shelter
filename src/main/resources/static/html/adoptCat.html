@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adopt a Cat</title>
+    <link rel="stylesheet" href="/static/animal-shelter/src/main/resources/static/CSS/homePage.css">
+</head>
+<body>
+<header>
+    <div class="top-bar">
+        <div class="logo">
+            <img src="/static/png/Logo.png" alt="Dierenvrienden Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="homePage.html">Homepage</a></li>
+                <li><a href="honden.html">Honden</a></li>
+                <li><a href="katten.html">Katten</a></li>
+                <li><a href="gastenboek.html">Gastenboek</a></li>
+                <li><a href="informatie.html">Informatie</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main>
+    <h1>Adopt a Cat</h1>
+    <form id="adoption-form">
+        <label for="user">User:</label>
+        <input type="text" id="user" name="user" required readonly><br>
+
+        <label for="animal">Animal:</label>
+        <input type="text" id="animal" name="animal" required readonly><br>
+
+        <label for="requestDate">Request Date:</label>
+        <input type="date" id="requestDate" name="requestDate" required><br>
+
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" value="pending" readonly><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</main>
+<footer>
+    <p>Animal Shelter © 2024</p>
+</footer>
+<script src="/static/javascript/adoptCat.js"></script>
+</body>
+</html>
+
