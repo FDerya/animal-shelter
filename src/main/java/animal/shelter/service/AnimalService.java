@@ -17,10 +17,10 @@ public class AnimalService {
     }
 
     public List<Animal> getAllCats() {
-        return animalRepository.findByType();
+        return animalRepository.findByType("cat");
     }
 
-    public List<Animal> getAllDogs(){ return animalRepository.findByType();}
+    public List<Animal> getAllDogs(){ return animalRepository.findByType("dog");}
 
 
     public void saveAnimal(Animal animal) {
