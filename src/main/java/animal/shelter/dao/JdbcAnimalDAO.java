@@ -20,6 +20,12 @@ public class JdbcAnimalDAO implements AnimalDAO {
 
     }
 
+    @Override
+    public void adoptAnimal(int idAnimal) {
+        String sql = "UPDATE animal SET status = 'adopted' WHERE idAnimal = ?";
+        jdbcTemplate.update(sql, idAnimal);
+    }
+
 
     @Override
     public void saveAnimal(Animal animal) {
@@ -68,6 +74,12 @@ public class JdbcAnimalDAO implements AnimalDAO {
     public List<Animal> getAllCats() {
         String sql = "SELECT * FROM animal WHERE species = 'cat'";
         return jdbcTemplate.query(sql, new AnimalRowMapper());
+    }
+
+    @Override
+    public List<Animal> getByType(String type) {
+        String sql = "SELECT * FROM animal WHERE species = ?";
+        return jdbcTemplate.query(sql, new AnimalRowMapper(), type);
     }
 
     private static class AnimalRowMapper implements RowMapper<Animal> {
