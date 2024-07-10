@@ -24,6 +24,11 @@ public class JdbcAdoptionRequestDAO implements AdaptionRequestDAO {
         this.dataSource = dataSource;
     }
 
+    public void adoptAnimal(int idAnimal) {
+        String sql = "UPDATE animal SET status = 'adopted' WHERE idAnimal = ?";
+        jdbcTemplate.update(sql, idAnimal);
+    }
+
     @Override
     public void saveAdoption(AdoptionRequest adoption) {
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
