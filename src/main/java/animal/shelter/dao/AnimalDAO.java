@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface AnimalDAO {
 
+    void adoptAnimal(int idAnimal);
+
     void saveAnimal(Animal animal);
     Optional<Animal> findAnimalById(int idAnimal);
     List<Animal> findAllAnimal();
@@ -14,5 +16,7 @@ public interface AnimalDAO {
     void updateAnimal(Animal animal);
 
     List<Animal> getAllCats();
+
+    List<Animal> getByType(String type);
 }
 
