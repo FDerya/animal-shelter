@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 window.location.href = `adoptCat.html?animalId=${cat.idAnimal}`;
             };
 
+
             catDiv.appendChild(catImage);
             catDiv.appendChild(catName);
             catDiv.appendChild(catAge);

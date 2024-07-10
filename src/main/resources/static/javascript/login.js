@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({email, password})
         });
+
 
         const messageDiv = document.getElementById('message');
 

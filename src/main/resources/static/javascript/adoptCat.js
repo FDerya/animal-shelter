@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             requestDate: requestDate,
             status: status
         };
-
+          // mysql
         try {
             const response = await fetch('http://localhost:8080/adoption_request/adopt', {
                 method: 'POST',
