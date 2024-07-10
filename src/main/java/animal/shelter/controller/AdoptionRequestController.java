@@ -25,7 +25,18 @@ public class AdoptionRequestController {
         this.adoptionRequestService = adoptionRequestService;
     }
 
-    // Create en Update
+    @PostMapping("/adopt")
+    public ResponseEntity<Void> adoptAnimal(@RequestBody AdoptionRequest adoptionRequest) {
+        if (adoptionRequest.getUser() == null || adoptionRequest.getUser().getIdUser() == 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User information is missing.");
+        }
+        adoptionRequestService.adoptAnimal(adoptionRequest.getAnimal().getIdAnimal(), adoptionRequest);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+    //  Update
     @PutMapping("/{idAdoption}")
     ResponseEntity<AdoptionRequest> createAdoption(@RequestBody AdoptionRequest adoptionRequest, @PathVariable("idAdoption") int idAdoption) {
         Optional<AdoptionRequest> optionalAdoptionRequest = adoptionRequestService.findAdoptionById(idAdoption);
