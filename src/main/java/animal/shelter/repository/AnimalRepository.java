@@ -33,8 +33,8 @@ public class AnimalRepository {
         jdbcAnimalDAO.deleteAnimal(animal);
     }
 
-    public List<Animal> findByType() {
-        return jdbcAnimalDAO.getAllCats();
+    public List<Animal> findByType(String type) {
+        return jdbcAnimalDAO.getByType(type);
     }
 
 
