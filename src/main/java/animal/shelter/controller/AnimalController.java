@@ -47,7 +47,7 @@ public class AnimalController {
     }
 
     // Read
-    @GetMapping("/getAnimal/{idAnimal}")
+    @GetMapping("/{idAnimal}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable("idAnimal") int idAnimal) {
         Optional<Animal> result = animalService.findAnimalById(idAnimal);
         if (result.isPresent()) {
