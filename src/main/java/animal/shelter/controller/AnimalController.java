@@ -18,11 +18,10 @@ public class AnimalController {
 
     private final AnimalService animalService;
 
-
+    @Autowired
     public AnimalController(AnimalService animalService) {
         this.animalService = animalService;
     }
-
 
     @GetMapping("/getAllCats")
     public List<Animal> getAllCats() {
@@ -32,21 +31,13 @@ public class AnimalController {
     @GetMapping("getAllDogs")
     public List<Animal> getAllDogs(){ return animalService.getAllDogs();}
 
-    // Create en Update
-    @PutMapping("/create/{idAnimal}")
-    ResponseEntity<Animal> createAnimal(@RequestBody Animal animal, @PathVariable("idAnimal") int idAnimal) {
-        Optional<Animal> optionalAnimal = animalService.findAnimalById(idAnimal);
-        if (optionalAnimal.isPresent()) {
-            animalService.updateAnimal(animal);
-            return ResponseEntity.ok().body(animal);
-        } else {
-            animalService.saveAnimal(animal);
-            URI uri = URI.create(String.format("http://localhost:8080/animal/%d", animal.getIdAnimal()));
-            return ResponseEntity.created(uri).body(animal);
-        }
+    @PostMapping("/create")
+    public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
+        animalService.saveAnimal(animal);
+        URI uri = URI.create(String.format("http://localhost:8080/animal/%d", animal.getIdAnimal()));
+        return ResponseEntity.created(uri).body(animal);
     }
 
-    // Read
     @GetMapping("/{idAnimal}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable("idAnimal") int idAnimal) {
         Optional<Animal> result = animalService.findAnimalById(idAnimal);
@@ -62,10 +53,8 @@ public class AnimalController {
         return animalService.findAllAnimal();
     }
 
-    // Delete
     @DeleteMapping("/delete/{idAnimal}")
     public ResponseEntity<Void> deleteAnimal(@PathVariable("idAnimal") int idAnimal) {
-        System.out.println("TEST 1 tesssttt");
         Optional<Animal> result = animalService.findAnimalById(idAnimal);
         if (result.isPresent()) {
             animalService.deleteAnimal(result.get());
@@ -74,8 +63,4 @@ public class AnimalController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
-
-
 }
-
-
