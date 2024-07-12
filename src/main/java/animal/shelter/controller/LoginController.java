@@ -24,12 +24,12 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) {
-        String token = loginService.login(loginDTO);
-        if (token != null) {
-            return ResponseEntity.ok(token);
+    public ResponseEntity<LoginDTO> login(@RequestBody LoginDTO loginDTO) {
+        LoginDTO responseDTO = loginService.login(loginDTO);
+        if (responseDTO != null) {
+            return ResponseEntity.ok(responseDTO);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
 
