@@ -29,11 +29,16 @@ public class JdbcAnimalDAO implements AnimalDAO {
 
     @Override
     public void saveAnimal(Animal animal) {
-        String sql = "INSERT INTO animal(name, species, age, gender, description, status) VALUES (?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, animal.getName(), animal.getSpecies(), animal.getGender(), animal.getDescription(), animal.getStatus());
-
-
+        String sql = "INSERT INTO animal (name, species, age, gender, description, status) VALUES (?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql,
+                animal.getName(),
+                animal.getSpecies(),
+                animal.getAge(),
+                animal.getGender(),
+                animal.getDescription(),
+                animal.getStatus());
     }
+
 
     @Override
     public Optional<Animal> findAnimalById(int idAnimal) {
