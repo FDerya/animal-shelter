@@ -22,13 +22,14 @@ public class LoginService {
 
     }
 
-    public String login(LoginDTO loginDTO) {
+    public LoginDTO login(LoginDTO loginDTO) {
         String email = loginDTO.getEmail();
         String password = loginDTO.getPassword();
         Optional<User> userOptional = userRepository.findByEmail(email);
         if (userOptional.isPresent() && userOptional.get().getPassword().equals(password)) {
             User user = userOptional.get();
-            return JWTUtil.generateToken(user.getIdUser(), user.getRole(), user.getEmail());
+            String token = JWTUtil.generateToken(user.getIdUser(), user.getRole(), user.getEmail());
+            return new LoginDTO(email, password, user.getRole(), token);
         }
         return null;
     }
