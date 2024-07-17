@@ -17,6 +17,8 @@ public interface AnimalDAO {
 
     List<Animal> getAllCats();
 
+    List<Animal> getAllDogs();
+
     List<Animal> getByType(String type);
 }
 

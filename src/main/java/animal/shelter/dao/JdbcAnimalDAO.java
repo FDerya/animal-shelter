@@ -1,6 +1,7 @@
 package animal.shelter.dao;
 
 import animal.shelter.model.Animal;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,8 @@ import java.util.Optional;
 @Repository
 public class JdbcAnimalDAO implements AnimalDAO {
 
-    private JdbcTemplate jdbcTemplate;
-
+    private final JdbcTemplate jdbcTemplate;
+    @Autowired
     public JdbcAnimalDAO(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
 
@@ -61,13 +62,15 @@ public class JdbcAnimalDAO implements AnimalDAO {
     }
     @Override
     public void updateAnimal(Animal animal) {
-        String sql = "UPDATE animal SET name = ?, species = ?, age = ?, gender = ?, description =?, status = ?";
+        String sql = "UPDATE animal SET name = ?, species = ?, age = ?, gender = ?, description = ?, status = ? WHERE idAnimal = ?";
         jdbcTemplate.update(sql, animal.getName(),
                 animal.getSpecies(), animal.getAge(),
                 animal.getGender(),
                 animal.getDescription(),
-                animal.getStatus());
+                animal.getStatus(),
+                animal.getIdAnimal());
     }
+
 
     @Override
     public void deleteAnimal(Animal animal) {
@@ -76,9 +79,14 @@ public class JdbcAnimalDAO implements AnimalDAO {
     }
 
     @Override
-    public List<Animal> getAllCats() {
-        String sql = "SELECT * FROM animal WHERE species = 'cat'";
-        return jdbcTemplate.query(sql, new AnimalRowMapper());
+   public List<Animal> getAllCats(){
+        String sql = "SELECT * FROM animal WHERE idAnimal = ?";
+        return jdbcTemplate.query(sql,new AnimalRowMapper(), "cat");
+    }
+    @Override
+    public List<Animal> getAllDogs(){
+        String sql = "SELECT * FROM animal WHERE idAnimal = ?";
+        return jdbcTemplate.query(sql,new AnimalRowMapper(),"dog");
     }
 
     @Override
@@ -87,7 +95,7 @@ public class JdbcAnimalDAO implements AnimalDAO {
         return jdbcTemplate.query(sql, new AnimalRowMapper(), type);
     }
 
-    private static class AnimalRowMapper implements RowMapper<Animal> {
+    private  class AnimalRowMapper implements RowMapper<Animal> {
         @Override
         public Animal mapRow(ResultSet rs, int rowNum) throws SQLException {
             Animal result = new Animal(

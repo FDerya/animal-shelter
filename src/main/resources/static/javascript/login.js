@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.ok) {
             const data = await response.json();
-            const token = data.token; // Get the token from the response
-            const role = data.role; // Get the role from the response
+            const token = data.token;
+            const role = data.role;
 
-            sessionStorage.setItem('token', token); // Store the token in sessionStorage
+            sessionStorage.setItem('token', token);
             alert("Login successful. Redirecting to appropriate page...");
 
             if (role === 'admin') {
