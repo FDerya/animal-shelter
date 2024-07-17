@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             status: 'available' // default status
         };
 
+
         const response = await fetch('http://localhost:8080/animal/create', {
             method: 'POST',
             headers: {
@@ -34,4 +35,19 @@ document.addEventListener('DOMContentLoaded', () => {
             messageDiv.textContent = "Failed to add animal. Please try again.";
         }
     });
+// Fetch all animals and display
+    document.getElementById('view-all-animals-button').addEventListener('click', async () => {
+        const animalsContainer = document.getElementById('animals-container');
+        animalsContainer.innerHTML = ''; // Clear previous content
+
+        const response = await fetch('http://localhost:8080/animal', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token') // Assuming the token is stored in sessionStorage
+            }
+        });
+    });
 });
+
+
