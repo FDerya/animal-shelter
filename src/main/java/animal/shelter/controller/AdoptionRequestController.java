@@ -25,6 +25,7 @@ public class AdoptionRequestController {
         this.adoptionRequestService = adoptionRequestService;
     }
 
+    //This method accepts an AdoptionRequest object, verifies user information.Does not return any value
     @PostMapping("/adopt")
     public ResponseEntity<Void> adoptAnimal(@RequestBody AdoptionRequest adoptionRequest) {
         if (adoptionRequest.getUser() == null || adoptionRequest.getUser().getIdUser() == 0) {
@@ -34,9 +35,7 @@ public class AdoptionRequestController {
         return ResponseEntity.ok().build();
     }
 
-
-
-    //  Update
+    // Update en create
     @PutMapping("/{idAdoption}")
     ResponseEntity<AdoptionRequest> createAdoption(@RequestBody AdoptionRequest adoptionRequest, @PathVariable("idAdoption") int idAdoption) {
         Optional<AdoptionRequest> optionalAdoptionRequest = adoptionRequestService.findAdoptionById(idAdoption);
@@ -49,6 +48,7 @@ public class AdoptionRequestController {
             return ResponseEntity.created(uri).body(adoptionRequest);
         }
     }
+
 
     //Read
     @GetMapping("/{idAdoption}")

@@ -28,8 +28,10 @@ public class AnimalController {
         return animalService.getAllCats();
     }
 
-    @GetMapping("getAllDogs")
-    public List<Animal> getAllDogs(){ return animalService.getAllDogs();}
+    @GetMapping("/getAllDogs")
+    public List<Animal> getAllDogs() {
+        return animalService.getAllDogs();
+    }
 
     @PostMapping("/create")
     public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
@@ -59,6 +61,18 @@ public class AnimalController {
         if (result.isPresent()) {
             animalService.deleteAnimal(result.get());
             return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+   // Available of pending status
+    @PutMapping("/edit/{idAnimal}")
+    public ResponseEntity<Animal> editAnimal(@PathVariable("idAnimal") int idAnimal, @RequestBody Animal animal) {
+        Optional<Animal> existingAnimal = animalService.findAnimalById(idAnimal);
+        if (existingAnimal.isPresent()) {
+            animal.setIdAnimal(idAnimal);
+            animalService.updateAnimal(animal);
+            return ResponseEntity.ok(animal);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

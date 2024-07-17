@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Service
 public class AnimalService {
-    AnimalRepository animalRepository;
+   private final AnimalRepository animalRepository;
 
     public AnimalService(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
@@ -20,12 +20,12 @@ public class AnimalService {
         return animalRepository.findByType("cat");
     }
 
-    public List<Animal> getAllDogs(){ return animalRepository.findByType("dog");}
-
+    public List<Animal> getAllDogs() {
+        return animalRepository.findByType("dog");
+    }
 
     public void saveAnimal(Animal animal) {
         animalRepository.saveAnimal(animal);
-
     }
 
     public Optional<Animal> findAnimalById(int idAnimal) {
@@ -43,6 +43,5 @@ public class AnimalService {
     public void deleteAnimal(Animal animal) {
         animalRepository.deleteAnimal(animal);
     }
-
 
 }
