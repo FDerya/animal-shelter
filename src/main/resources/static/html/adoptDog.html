@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Honden</title>
+    <title>Adopt a Dog</title>
     <link rel="stylesheet" href="/static/animal-shelter/src/main/resources/static/CSS/homePage.css">
 </head>
 <body>
@@ -24,12 +24,29 @@
     </div>
 </header>
 <main>
-    <h1>Available Dogs for Adoption</h1>
-    <div id="dogs-list" class="dogs-list"></div>
+    <h1>Adopt a Dog</h1>
+    <form id="adoption-form">
+        <label for="user">User:</label>
+        <input type="text" id="user" name="user" required readonly><br>
+
+        <label for="animal">Animal:</label>
+        <input type="text" id="animal" name="animal" required readonly><br>
+
+        <label for="requestDate">Request Date:</label>
+        <input type="date" id="requestDate" name="requestDate" required><br>
+
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" value="pending" readonly><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
 </main>
 <footer>
     <p>Animal Shelter © 2024</p>
 </footer>
 <script src="/static/javascript/honden.js"></script>
+
+
 </body>
 </html>

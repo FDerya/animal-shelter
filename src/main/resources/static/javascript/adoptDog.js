@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Token not found in sessionStorage');
     }
 
+    // Add event listener for form submission
     document.getElementById('adoption-form').addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -37,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Prepare the adoption request object
         const adoptionRequest = {
-            user: {idUser: userID, email: userEmail},
-            animal: {idAnimal: animalId},
+            user: { idUser: userID, email: userEmail },
+            animal: { idAnimal: animalId },
             requestDate: requestDate,
             status: status
         };
@@ -57,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Handle the server response
             if (response.ok) {
                 alert('Adoption request submitted successfully!');
-                window.location.href = 'katten.html';
+                window.location.href = 'honden.html';
             } else {
                 alert('Failed to submit adoption request.');
             }

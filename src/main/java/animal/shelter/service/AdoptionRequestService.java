@@ -13,7 +13,7 @@ import java.util.Optional;
 public class AdoptionRequestService {
 
     private final AdoptionRequestRepository adoptionRequestRepository;
-    private JdbcAdoptionRequestDAO jdbcAdoptionRequestDAO;
+    private final JdbcAdoptionRequestDAO jdbcAdoptionRequestDAO;
 
     @Autowired
     public AdoptionRequestService(AdoptionRequestRepository adoptionRequestRepository, JdbcAdoptionRequestDAO jdbcAdoptionRequestDAO) {
@@ -21,36 +21,36 @@ public class AdoptionRequestService {
         this.jdbcAdoptionRequestDAO = jdbcAdoptionRequestDAO;
     }
 
-    public AdoptionRequestService(AdoptionRequestRepository adoptionRequestRepository) {
-        this.adoptionRequestRepository = adoptionRequestRepository;
-    }
-
+    // Saves an adoption request and updates the animal's status to 'adopted'.
     public void adoptAnimal(int idAnimal, AdoptionRequest adoptionRequest) {
         // Save the adoption request
         adoptionRequestRepository.saveAdoption(adoptionRequest);
 
-        // Update
+        // Update the animal's status to 'adopted'
         jdbcAdoptionRequestDAO.adoptAnimal(idAnimal);
     }
 
-
+    // Saves an adoption request.
     public void saveAdoption(AdoptionRequest adoptionRequest) {
         adoptionRequestRepository.saveAdoption(adoptionRequest);
-
     }
 
+    // Finds an adoption request by its ID.
     public Optional<AdoptionRequest> findAdoptionById(int idAdoption) {
         return adoptionRequestRepository.findAdoptionById(idAdoption);
     }
 
+    // Retrieves all adoption requests.
     public List<AdoptionRequest> findAllAdoption() {
         return adoptionRequestRepository.findAllAdoption();
     }
 
+    // Deletes an adoption request.
     public void deleteAdoption(AdoptionRequest adoptionRequest) {
         adoptionRequestRepository.deleteAdoption(adoptionRequest);
     }
 
+    // Updates an adoption request.
     public void updateAdoption(AdoptionRequest adoptionRequest) {
         adoptionRequestRepository.updateAdoption(adoptionRequest);
     }

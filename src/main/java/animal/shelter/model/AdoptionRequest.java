@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class AdoptionRequest {
 
-    // Attributes
     private int idAdoption;
     private User user;
     private Animal animal;
@@ -12,7 +11,15 @@ public class AdoptionRequest {
     private String status;
 
 
-    // constructors
+    /**
+     * Constructs a new AdoptionRequest with the specified details.
+     *
+     * @param idAdoption  the ID of the adoption request
+     * @param user        the user making the adoption request
+     * @param animal      the animal to be adopted
+     * @param requestDate the date of the adoption request
+     * @param status      the status of the adoption request
+     */
     public AdoptionRequest(int idAdoption, User user, Animal animal, Date requestDate, String status) {
         this.idAdoption = idAdoption;
         this.user = user;
@@ -20,12 +27,9 @@ public class AdoptionRequest {
         this.requestDate = requestDate;
         this.status = status;
 
-
     }
 
-// Getters & Setters
-
-
+    // Gets and sets the attributes of Adoption Request
     public int getIdAdoption() {
         return idAdoption;
     }
