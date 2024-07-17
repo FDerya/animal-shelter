@@ -12,7 +12,17 @@ public class Animal {
     private String status;
 
 
-    // Constructors
+    /**
+     * Constructs a new Animal with the specified details.
+     *
+     * @param idAnimal    the ID of the animal
+     * @param name        the name of the animal
+     * @param species     the species of the animal
+     * @param age         the age of the animal
+     * @param gender      the gender of the animal
+     * @param description a description of the animal
+     * @param status      the status of the animal
+     */
     public Animal(int idAnimal, String name, String species, int age, String gender, String description, String status) {
         this.idAnimal = idAnimal;
         this.name = name;
@@ -24,27 +34,16 @@ public class Animal {
 
     }
 
-    public Animal(String name, String species, int age, String gender, String description, String status) {
-        this.name = name;
-        this.species = species;
-        this.age = age;
-        this.gender = gender;
-        this.description = description;
-        this.status = status;
-    }
-
     public Animal() {
-
     }
 
-    //Methode
+    // Returns a string representation of the animal.
     @Override
     public String toString() {
         return String.format("%s", name);
     }
 
     // Getters & Setters
-
     public int getIdAnimal() {
         return idAnimal;
     }

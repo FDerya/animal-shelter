@@ -9,33 +9,40 @@ import java.util.Optional;
 
 @Repository
 public class AnimalRepository {
-    private  JdbcAnimalDAO jdbcAnimalDAO;
+
+    private final JdbcAnimalDAO jdbcAnimalDAO;
 
     public AnimalRepository(JdbcAnimalDAO jdbcAnimalDAO){
         this.jdbcAnimalDAO = jdbcAnimalDAO;
-
     }
 
-
+    // Saves a new animal to the database.
     public void saveAnimal(Animal animal){
         jdbcAnimalDAO.saveAnimal(animal);
     }
+
+    // Finds an animal by its ID.
     public Optional<Animal> findAnimalById(int idAnimal){
         return jdbcAnimalDAO.findAnimalById(idAnimal);
     }
+
+    // Retrieves all animals from the database.
     public List<Animal> findAllAnimal(){
         return jdbcAnimalDAO.findAllAnimal();
     }
+
+    // Updates an existing animal in the database.
     public void updateAnimal(Animal animal){
         jdbcAnimalDAO.updateAnimal(animal);
     }
+
+    // Deletes an animal from the database.
     public  void deleteAnimal(Animal animal){
         jdbcAnimalDAO.deleteAnimal(animal);
     }
 
+    // Retrieves animals by their type (species) from the database.
     public List<Animal> findByType(String type) {
         return jdbcAnimalDAO.getByType(type);
     }
-
-
 }

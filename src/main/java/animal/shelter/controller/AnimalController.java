@@ -23,16 +23,19 @@ public class AnimalController {
         this.animalService = animalService;
     }
 
+    // Endpoint to retrieve all cats.
     @GetMapping("/getAllCats")
     public List<Animal> getAllCats() {
         return animalService.getAllCats();
     }
 
+    // Endpoint to retrieve all dogs.
     @GetMapping("/getAllDogs")
     public List<Animal> getAllDogs() {
         return animalService.getAllDogs();
     }
 
+    // Endpoint to create a new animal entry.
     @PostMapping("/create")
     public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
         animalService.saveAnimal(animal);
@@ -40,6 +43,7 @@ public class AnimalController {
         return ResponseEntity.created(uri).body(animal);
     }
 
+    // Endpoint to retrieve an animal by its ID.
     @GetMapping("/{idAnimal}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable("idAnimal") int idAnimal) {
         Optional<Animal> result = animalService.findAnimalById(idAnimal);
@@ -50,11 +54,13 @@ public class AnimalController {
         }
     }
 
+    // Endpoint to retrieve all animals.
     @GetMapping
     public List<Animal> getAll() {
         return animalService.findAllAnimal();
     }
 
+    // Endpoint to delete an animal by its ID.
     @DeleteMapping("/delete/{idAnimal}")
     public ResponseEntity<Void> deleteAnimal(@PathVariable("idAnimal") int idAnimal) {
         Optional<Animal> result = animalService.findAnimalById(idAnimal);
@@ -65,7 +71,8 @@ public class AnimalController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
-   // Available of pending status
+
+    // Endpoint to edit an existing animal entry.
     @PutMapping("/edit/{idAnimal}")
     public ResponseEntity<Animal> editAnimal(@PathVariable("idAnimal") int idAnimal, @RequestBody Animal animal) {
         Optional<Animal> existingAnimal = animalService.findAnimalById(idAnimal);
