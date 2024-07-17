@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fetchAnimals();
 });
 
+// Fetch animals from the server
 function fetchAnimals() {
     fetch('http://localhost:8080/animal')
         .then(response => response.json())
@@ -9,6 +10,7 @@ function fetchAnimals() {
         .catch(error => console.error('Error fetching animals:', error));
 }
 
+// Display animals on the page
 function displayAnimals(animals) {
     const animalList = document.getElementById('animal-list');
 
@@ -36,6 +38,7 @@ function displayAnimals(animals) {
     });
 }
 
+// Delete an animal
 function deleteAnimal(id, name) {
     if (confirm(`Are you sure you want to delete ${name}?`)) {
         fetch(`http://localhost:8080/animal/delete/${id}`, {
@@ -53,6 +56,7 @@ function deleteAnimal(id, name) {
     }
 }
 
+// Edit an animal
 function editAnimal(id) {
     fetch(`http://localhost:8080/animal/${id}`)
         .then(response => response.json())
@@ -69,14 +73,17 @@ function editAnimal(id) {
         .catch(error => console.error('Error fetching animal details:', error));
 }
 
+// Open the modal for editing
 function openModal() {
     document.getElementById('edit-modal').style.display = 'block';
 }
 
+// Close the modal
 function closeModal() {
     document.getElementById('edit-modal').style.display = 'none';
 }
 
+// Update an animal
 function updateAnimal() {
     const id = document.getElementById('edit-id').value;
     const animal = {

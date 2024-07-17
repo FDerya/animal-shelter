@@ -14,15 +14,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class LoginController {
 
-    private LoginService loginService;
-    private JWTUtil jwtUtil;
+    private final LoginService loginService;
 
     @Autowired
-    public LoginController(LoginService loginService, JWTUtil jwtUtil) {
+    public LoginController(LoginService loginService) {
         this.loginService = loginService;
-        this.jwtUtil = jwtUtil;
     }
 
+    // Validates the user credentials and generates a JWT token if valid.
     @PostMapping("/login")
     public ResponseEntity<LoginDTO> login(@RequestBody LoginDTO loginDTO) {
         LoginDTO responseDTO = loginService.login(loginDTO);
@@ -33,6 +32,8 @@ public class LoginController {
         }
     }
 
+    // Endpoint for user registration.
+    // Registers a new user with the role of "user".
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody User user) {
         user.setRole("user");
@@ -43,6 +44,4 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
         }
     }
-
-
 }

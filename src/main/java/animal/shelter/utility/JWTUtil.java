@@ -12,18 +12,18 @@ import java.util.Base64;
 public class JWTUtil {
 
     private final String JWT_KEY = "aWLkXoJCPvt/V8kPEYyhTdYvIvyd0t+gI+rCFqhJdaE=";
-    private final long JWT_EXPIRATION = 86400000; // 1 dag
+    private static final long JWT_EXPIRATION = 86400000; // 1 dag
     private static SecretKey key;
 
     public JWTUtil() {
         key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(JWT_KEY));
     }
 
+    // Generates a JWT token with the given user details.
     public static String generateToken(int id, String role, String email) {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
-        long expMillis = nowMillis + 86400000; // 1 day
-        Date exp = new Date(expMillis);
+        Date exp = new Date(JWT_EXPIRATION);
 
         return Jwts.builder()
                 .claim("idUser", id)
@@ -36,6 +36,7 @@ public class JWTUtil {
     }
 
 
+    // Validates the given JWT token.
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
@@ -45,10 +46,12 @@ public class JWTUtil {
         }
     }
 
+    // Extracts the role from the given JWT token.
     public String getRoleFromToken(String token) {
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().get("role", String.class);
     }
 
+    // Extracts the user ID from the given JWT token.
     public int getUserIdFromToken(String token) {
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().get("idUser", Integer.class);
     }

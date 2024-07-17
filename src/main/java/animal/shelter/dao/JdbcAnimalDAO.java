@@ -11,23 +11,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+
 @Repository
 public class JdbcAnimalDAO implements AnimalDAO {
 
     private final JdbcTemplate jdbcTemplate;
+
     @Autowired
     public JdbcAnimalDAO(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-
     }
 
-    @Override
-    public void adoptAnimal(int idAnimal) {
-        String sql = "UPDATE animal SET status = 'adopted' WHERE idAnimal = ?";
-        jdbcTemplate.update(sql, idAnimal);
-    }
-
-
+    // Saves a new animal to the database.
     @Override
     public void saveAnimal(Animal animal) {
         String sql = "INSERT INTO animal (name, species, age, gender, description, status) VALUES (?, ?, ?, ?, ?, ?)";
@@ -40,26 +35,27 @@ public class JdbcAnimalDAO implements AnimalDAO {
                 animal.getStatus());
     }
 
-
+    // Finds an animal by its ID.
     @Override
     public Optional<Animal> findAnimalById(int idAnimal) {
         String sql = "SELECT * FROM animal WHERE idAnimal = ?";
         List<Animal> resultList = jdbcTemplate.query(sql, new AnimalRowMapper(), idAnimal);
+        // If animal is not found, return empty else return the found animal
         if (resultList.isEmpty()) {
             return Optional.empty();
         } else {
             return Optional.of(resultList.get(0));
-
         }
-
     }
 
+    // Retrieves all animals from the database.
     @Override
     public List<Animal> findAllAnimal() {
         String sql = "SELECT * FROM animal";
         return jdbcTemplate.query(sql, new AnimalRowMapper());
-
     }
+
+    // Updates an existing animal in the database.
     @Override
     public void updateAnimal(Animal animal) {
         String sql = "UPDATE animal SET name = ?, species = ?, age = ?, gender = ?, description = ?, status = ? WHERE idAnimal = ?";
@@ -71,34 +67,25 @@ public class JdbcAnimalDAO implements AnimalDAO {
                 animal.getIdAnimal());
     }
 
-
+    // Deletes an animal from the database.
     @Override
     public void deleteAnimal(Animal animal) {
         String sql = "DELETE FROM animal WHERE idAnimal = ?";
         jdbcTemplate.update(sql, animal.getIdAnimal());
     }
 
-    @Override
-   public List<Animal> getAllCats(){
-        String sql = "SELECT * FROM animal WHERE idAnimal = ?";
-        return jdbcTemplate.query(sql,new AnimalRowMapper(), "cat");
-    }
-    @Override
-    public List<Animal> getAllDogs(){
-        String sql = "SELECT * FROM animal WHERE idAnimal = ?";
-        return jdbcTemplate.query(sql,new AnimalRowMapper(),"dog");
-    }
-
+    // Retrieves animals by their type (species) from the database.
     @Override
     public List<Animal> getByType(String type) {
         String sql = "SELECT * FROM animal WHERE species = ?";
         return jdbcTemplate.query(sql, new AnimalRowMapper(), type);
     }
 
-    private  class AnimalRowMapper implements RowMapper<Animal> {
+    // RowMapper implementation for mapping rows of a ResultSet to Animal objects.
+    private static class AnimalRowMapper implements RowMapper<Animal> {
         @Override
         public Animal mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Animal result = new Animal(
+            return new Animal(
                     rs.getInt("idAnimal"),
                     rs.getString("name"),
                     rs.getString("species"),
@@ -106,9 +93,7 @@ public class JdbcAnimalDAO implements AnimalDAO {
                     rs.getString("gender"),
                     rs.getString("description"),
                     rs.getString("status"));
-            return result;
         }
     }
-
 }
 

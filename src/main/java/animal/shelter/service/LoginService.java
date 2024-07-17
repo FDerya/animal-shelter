@@ -13,34 +13,33 @@ import java.util.Optional;
 public class LoginService {
 
     private final UserRepository userRepository;
-    private final JWTUtil jwtUtil;
 
     @Autowired
-    public LoginService(UserRepository userRepository, JWTUtil jwtUtil) {
+    public LoginService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.jwtUtil = jwtUtil;
-
     }
 
+    // Authenticates the user and generates a JWT token if the credentials are valid.
     public LoginDTO login(LoginDTO loginDTO) {
         String email = loginDTO.getEmail();
         String password = loginDTO.getPassword();
         Optional<User> userOptional = userRepository.findByEmail(email);
+
         if (userOptional.isPresent() && userOptional.get().getPassword().equals(password)) {
             User user = userOptional.get();
             String token = JWTUtil.generateToken(user.getIdUser(), user.getRole(), user.getEmail());
             return new LoginDTO(email, password, user.getRole(), token);
         }
+
         return null;
     }
 
-
-
-
+    // Registers a new user if the email is not already in use.
     public String register(User user) {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             return "User already exists";
         }
+
         userRepository.saveUser(user);
         return "Registration successful";
     }

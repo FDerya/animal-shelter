@@ -14,21 +14,23 @@ import java.sql.SQLException;
 import java.util.*;
 
 @Repository
-public class JdbcAdoptionRequestDAO implements AdaptionRequestDAO {
+public class JdbcAdoptionRequestDAO implements AdoptionRequestDAO {
 
-    private JdbcTemplate jdbcTemplate;
-    private DataSource dataSource;
+    private final JdbcTemplate jdbcTemplate;
+    private final DataSource dataSource;
 
     public JdbcAdoptionRequestDAO(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.dataSource = dataSource;
     }
 
+    // Updates the status of an animal to 'adopted'.
     public void adoptAnimal(int idAnimal) {
         String sql = "UPDATE animal SET status = 'adopted' WHERE idAnimal = ?";
         jdbcTemplate.update(sql, idAnimal);
     }
 
+    // Saves a new adoption request
     @Override
     public void saveAdoption(AdoptionRequest adoption) {
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
@@ -38,7 +40,7 @@ public class JdbcAdoptionRequestDAO implements AdaptionRequestDAO {
         adoption.setIdAdoption(newId);
     }
 
-
+    // Finds an adoption request by its ID.
     @Override
     public Optional<AdoptionRequest> findAdoptionById(int idAdoption) {
         String sql = "SELECT * FROM adoption_request WHERE idAdoption = ?";
@@ -46,12 +48,14 @@ public class JdbcAdoptionRequestDAO implements AdaptionRequestDAO {
         return resultList.isEmpty() ? Optional.empty() : Optional.of(resultList.get(0));
     }
 
+    // Retrieves all adoption requests
     @Override
     public List<AdoptionRequest> findAllAdoption() {
         String sql = "SELECT * FROM adoption_request";
         return jdbcTemplate.query(sql, new AdoptionRowMapper());
     }
 
+    // Deletes an existing adoption request.
     @Override
     public void deleteAdoption(AdoptionRequest adoptionRequest) {
         String sql = "DELETE FROM adoption_request WHERE idAdoption = ?";
@@ -59,12 +63,14 @@ public class JdbcAdoptionRequestDAO implements AdaptionRequestDAO {
     }
 
 
+    // Updates an existing adoption request.
     @Override
     public void updateAdoption(AdoptionRequest adoption) {
         String sql = "UPDATE adoption_request SET idUser = ?, idAnimal = ?, requestDate = ?, status = ? WHERE idAdoption = ?";
         jdbcTemplate.update(sql, adoption.getUser().getIdUser(), adoption.getAnimal().getIdAnimal(), adoption.getRequestDate(), adoption.getStatus(), adoption.getIdAdoption());
     }
 
+    // Maps the parameters of an AdoptionRequest to a map for insertion.
     private Map<String, Object> mapInsertParameters(AdoptionRequest adoption) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("idUser", adoption.getUser().getIdUser());
@@ -74,7 +80,8 @@ public class JdbcAdoptionRequestDAO implements AdaptionRequestDAO {
         return parameters;
     }
 
-    private class AdoptionRowMapper implements RowMapper<AdoptionRequest> {
+    // RowMapper implementation for mapping rows of a ResultSet to AdoptionRequest objects.
+    private static class AdoptionRowMapper implements RowMapper<AdoptionRequest> {
         @Override
         public AdoptionRequest mapRow(ResultSet rs, int rowNum) throws SQLException {
             int idAdoption = rs.getInt("idAdoption");
