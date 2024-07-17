@@ -14,16 +14,15 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final AdoptionRequestRepository adoptionRequestRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, AdoptionRequestRepository adoptionRequestRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.adoptionRequestRepository = adoptionRequestRepository;
     }
-    // LoginDTO --> getRole()
-    public String register(LoginDTO loginDTO){
-        if(userRepository.findByEmail(loginDTO.getEmail()).isPresent()){
+
+    // Registers a new user if the email is not already in use.
+    public String register(LoginDTO loginDTO) {
+        if (userRepository.findByEmail(loginDTO.getEmail()).isPresent()) {
             return "User already exists";
         }
 
@@ -38,27 +37,28 @@ public class UserService {
         return "Registration successful";
     }
 
+    // Saves a new user to the repository.
     public void saveUser(User user) {
         userRepository.saveUser(user);
     }
 
+    // Finds a user by their ID.
     public Optional<User> findUserById(int idUser) {
         return userRepository.findUserById(idUser);
     }
 
+    // Retrieves all users from the repository.
     public List<User> findAllUser() {
         return userRepository.findAllUser();
     }
 
+    // Updates an existing user in the repository.
     public void updateUser(User user) {
         userRepository.updateUser(user);
     }
 
+    // Deletes a user from the repository.
     public void deleteUser(User user) {
         userRepository.deleteUser(user);
     }
-
-//    public Optional<User> findUserByEmail(String email) {
-//        return null;
-//    }
 }

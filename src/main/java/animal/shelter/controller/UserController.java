@@ -16,8 +16,6 @@ import java.util.Optional;
 @CrossOrigin
 @RequestMapping("/user")
 public class UserController {
-
-
     private final UserService userService;
 
     @Autowired
@@ -25,27 +23,31 @@ public class UserController {
         this.userService = userService;
     }
 
-    // Create en Update
+    // Endpoint to create or update a user.
+    // If a user with the given ID exists, it updates the user.
+    // Otherwise, it creates a new user.
     @PutMapping("/{idUser}")
-    ResponseEntity<User> createUser(@RequestBody User user, @PathVariable("idUser") int idUser) {
+    ResponseEntity<User> createOrUpdateUser(@RequestBody User user, @PathVariable("idUser") int idUser) {
         Optional<User> optionalUser = userService.findUserById(idUser);
+        // If userID is present, update the user details
         if (optionalUser.isPresent()) {
             userService.updateUser(user);
             return ResponseEntity.ok().body(user);
-        } else {
+        }
+        // If userID isn't present, create a new  user
+        else {
             userService.saveUser(user);
             URI uri = URI.create(String.format("http://localhost:8080/user/%d", user.getIdUser()));
             return ResponseEntity.created(uri).body(user);
         }
-
-
     }
 
-    //Read
+    //  Endpoint to retrieve a user by their ID.
     @GetMapping("/{idUser}")
-    @ResponseBody
     User getUserById(@PathVariable("idUser") int idUser) {
         Optional<User> result = userService.findUserById(idUser);
+        // If the result comes back empty, show the error message "User not Found"
+        // Otherwise return the user details
         if (result.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Geen User gevonden");
         } else {
@@ -55,30 +57,16 @@ public class UserController {
         }
     }
 
+    //  Endpoint to retrieve all users.
     @GetMapping
     public List<User> getAll() {
         return userService.findAllUser();
     }
 
-
+    // Endpoint to delete a user by their ID.
     @DeleteMapping("/delete/{code}")
     public @ResponseBody void deleteUser(@PathVariable int code) {
         User userDelete = getUserById(code);
         userService.deleteUser(userDelete);
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

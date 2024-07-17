@@ -2,14 +2,12 @@ package animal.shelter.model;
 
 public class User {
 
-    // Attributes
     private int idUser;
     private String email;
     private String password;
     private String role;
 
 
-    // Constructors
     public User(int idUser, String email, String password, String role) {
         this.idUser = idUser;
         this.email = email;
@@ -17,16 +15,11 @@ public class User {
         this.role = role;
 
     }
-    // dbcAdoptionRequestDAO --> mapRow
-    // LoginService --> register
 
-    public User() {
-
+    public  User() {
     }
 
-
     // Getters & Setters
-
     public int getIdUser() {
         return idUser;
     }

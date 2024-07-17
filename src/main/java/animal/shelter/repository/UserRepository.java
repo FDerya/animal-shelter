@@ -11,44 +11,40 @@ import java.util.Optional;
 @Repository
 public class UserRepository {
 
-    private JdbcUserDAO jdbcUserDAO;
+    private final JdbcUserDAO jdbcUserDAO;
 
     @Autowired
     public UserRepository(JdbcUserDAO jdbcUserDAO) {
         this.jdbcUserDAO = jdbcUserDAO;
-
-
     }
 
-
+    // Saves a new user to the database.
     public void saveUser(User user) {
         jdbcUserDAO.saveUser(user);
-
     }
 
+    // Finds a user by their ID.
     public Optional<User> findUserById(int idUser) {
         return jdbcUserDAO.findUserById(idUser);
-
     }
 
+    // Retrieves all users from the database.
     public List<User> findAllUser() {
         return jdbcUserDAO.findAllUser();
-
     }
 
+    // Updates an existing user in the database.
     public void updateUser(User user) {
         jdbcUserDAO.updateUser(user);
-
     }
 
+    // Deletes a user from the database.
     public void deleteUser(User user) {
         jdbcUserDAO.deleteUser(user);
     }
 
-    // Login Service
+    // Finds a user by their email address.
     public Optional<User> findByEmail(String email) {
-        return jdbcUserDAO.findByEmail(email);  
-
-
+        return jdbcUserDAO.findByEmail(email);
     }
 }
