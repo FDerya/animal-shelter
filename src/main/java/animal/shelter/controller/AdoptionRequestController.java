@@ -16,8 +16,6 @@ import java.util.Optional;
 @CrossOrigin
 @RequestMapping("adoption_request")
 public class AdoptionRequestController {
-
-
     private final AdoptionRequestService adoptionRequestService;
 
     @Autowired
@@ -25,7 +23,7 @@ public class AdoptionRequestController {
         this.adoptionRequestService = adoptionRequestService;
     }
 
-    //This method accepts an AdoptionRequest object, verifies user information.Does not return any value
+    //Validates the user information in the request and processes the adoption if valid.
     @PostMapping("/adopt")
     public ResponseEntity<Void> adoptAnimal(@RequestBody AdoptionRequest adoptionRequest) {
         if (adoptionRequest.getUser() == null || adoptionRequest.getUser().getIdUser() == 0) {
@@ -35,49 +33,46 @@ public class AdoptionRequestController {
         return ResponseEntity.ok().build();
     }
 
-    // Update en create
+    // If the request with the given ID exists, it updates the existing request.
+    // Otherwise, it creates a new request.
     @PutMapping("/{idAdoption}")
-    ResponseEntity<AdoptionRequest> createAdoption(@RequestBody AdoptionRequest adoptionRequest, @PathVariable("idAdoption") int idAdoption) {
+    ResponseEntity<AdoptionRequest> createOrUpdateAdoption(@RequestBody AdoptionRequest adoptionRequest, @PathVariable("idAdoption") int idAdoption) {
         Optional<AdoptionRequest> optionalAdoptionRequest = adoptionRequestService.findAdoptionById(idAdoption);
+        // If the adoptionID is present, update the adoption information
         if (optionalAdoptionRequest.isPresent()) {
             adoptionRequestService.updateAdoption(adoptionRequest);
             return ResponseEntity.ok().body(adoptionRequest);
-        } else {
+        }
+        // If the adoptionID is not present, create a new adoption
+        else {
             adoptionRequestService.saveAdoption(adoptionRequest);
             URI uri = URI.create(String.format("http://localhost:8080/adoption_request/%d", adoptionRequest.getIdAdoption()));
             return ResponseEntity.created(uri).body(adoptionRequest);
         }
     }
 
-
-    //Read
+    // Endpoint to retrieve an adoption request by its ID.
     @GetMapping("/{idAdoption}")
-    @ResponseBody
     public AdoptionRequest getAdoptionById(@PathVariable("idAdoption") int idAdoption) {
         Optional<AdoptionRequest> result = adoptionRequestService.findAdoptionById(idAdoption);
         if (result.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Adoption request geen gevonden");
-
-        } else {
-            AdoptionRequest adoptionRequest = result.get();
-            adoptionRequest.setIdAdoption(idAdoption);
-            return adoptionRequest;
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Adoption request not found.");
         }
+        return result.get();
     }
 
+    // Endpoint to retrieve all adoption requests.
     @GetMapping()
     public List<AdoptionRequest> getAll() {
         return adoptionRequestService.findAllAdoption();
     }
 
-
+    // Endpoint to delete an adoption request by its ID.
     @DeleteMapping("/delete/{idAdoption}")
     public @ResponseBody void deleteAdoption(@PathVariable int idAdoption) {
         AdoptionRequest adoptionDelete = getAdoptionById(idAdoption);
         adoptionRequestService.deleteAdoption(adoptionDelete);
     }
-
-
 }
 
 
