@@ -11,18 +11,7 @@ public class Animal {
     private String description;
     private String status;
 
-
-    /**
-     * Constructs a new Animal with the specified details.
-     *
-     * @param idAnimal    the ID of the animal
-     * @param name        the name of the animal
-     * @param species     the species of the animal
-     * @param age         the age of the animal
-     * @param gender      the gender of the animal
-     * @param description a description of the animal
-     * @param status      the status of the animal
-     */
+    //Constructors
     public Animal(int idAnimal, String name, String species, int age, String gender, String description, String status) {
         this.idAnimal = idAnimal;
         this.name = name;
