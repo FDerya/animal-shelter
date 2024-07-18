@@ -30,15 +30,16 @@ public class JdbcAdoptionRequestDAO implements AdoptionRequestDAO {
         jdbcTemplate.update(sql, idAnimal);
     }
 
-    // Saves a new adoption request
     @Override
     public void saveAdoption(AdoptionRequest adoption) {
-        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
-                .withTableName("adoption_request")
-                .usingGeneratedKeyColumns("idAdoption");
-        int newId = simpleJdbcInsert.executeAndReturnKey(mapInsertParameters(adoption)).intValue();
-        adoption.setIdAdoption(newId);
+        String sql = "INSERT INTO adoption_request ( idUser, idAnimal, requestDate, status) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql,
+                adoption.getUser().getIdUser(),
+                adoption.getAnimal().getIdAnimal(),
+                adoption.getRequestDate(),
+                adoption.getStatus());
     }
+
 
     // Finds an adoption request by its ID.
     @Override
@@ -70,15 +71,6 @@ public class JdbcAdoptionRequestDAO implements AdoptionRequestDAO {
         jdbcTemplate.update(sql, adoption.getUser().getIdUser(), adoption.getAnimal().getIdAnimal(), adoption.getRequestDate(), adoption.getStatus(), adoption.getIdAdoption());
     }
 
-    // Maps the parameters of an AdoptionRequest to a map for insertion.
-    private Map<String, Object> mapInsertParameters(AdoptionRequest adoption) {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("idUser", adoption.getUser().getIdUser());
-        parameters.put("idAnimal", adoption.getAnimal().getIdAnimal());
-        parameters.put("requestDate", adoption.getRequestDate());
-        parameters.put("status", adoption.getStatus());
-        return parameters;
-    }
 
     // RowMapper implementation for mapping rows of a ResultSet to AdoptionRequest objects.
     private static class AdoptionRowMapper implements RowMapper<AdoptionRequest> {

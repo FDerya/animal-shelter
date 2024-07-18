@@ -69,7 +69,7 @@ public class AdoptionRequestController {
 
     // Endpoint to delete an adoption request by its ID.
     @DeleteMapping("/delete/{idAdoption}")
-    public @ResponseBody void deleteAdoption(@PathVariable int idAdoption) {
+    public  void deleteAdoption(@PathVariable int idAdoption) {
         AdoptionRequest adoptionDelete = getAdoptionById(idAdoption);
         adoptionRequestService.deleteAdoption(adoptionDelete);
     }
