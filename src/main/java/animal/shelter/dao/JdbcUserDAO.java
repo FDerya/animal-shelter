@@ -55,12 +55,33 @@ public class JdbcUserDAO implements UserDAO {
         jdbcTemplate.update(sql, user.getEmail(), user.getPassword(), user.getRole(), user.getIdUser());
     }
 
+    public void blockUser(User user){
+        String  sql = "UPDATE User SET block = 1 WHERE idUser =?";
+        jdbcTemplate.update(sql ,user.getIdUser());
+
+
+    }
+
+
+
+
     // Finds a user by their email address.
     public Optional<User> findByEmail(String email) {
         String sql = "SELECT * FROM user WHERE email = ?";
         List<User> resultList = jdbcTemplate.query(sql, new UserRowMapper(), email);
         return resultList.isEmpty() ? Optional.empty() : Optional.of(resultList.get(0));
     }
+
+
+
+    //kullanıcı ID'sine göre email bilgisini almak için
+public Optional<String> findEmailById(int idUser){
+        String sql = "SELECT email FROM user WHERE idUser = ?";
+    List<String> resultList = jdbcTemplate.queryForList(sql, String.class, idUser);
+    return resultList.isEmpty() ? Optional.empty() : Optional.of(resultList.get(0));
+}
+
+
 
     // RowMapper implementation for mapping rows of a ResultSet to User objects.
     private static class UserRowMapper implements RowMapper<User> {
@@ -70,7 +91,8 @@ public class JdbcUserDAO implements UserDAO {
                     rs.getInt("idUser"),
                     rs.getString("email"),
                     rs.getString("password"),
-                    rs.getString("role"));
+                    rs.getString("role")
+                    );
         }
     }
 }

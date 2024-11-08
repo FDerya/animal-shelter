@@ -84,4 +84,53 @@ public class AnimalController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
-}
+
+
+    @GetMapping("/color/{color}")
+    public ResponseEntity<List<Animal>> getAnimalByColor(@PathVariable("color") String color) {
+        List<Animal> animal = animalService.getAnimalByColor(color);
+        return ResponseEntity.ok(animal);
+    }
+
+
+    // deneme 3  Service te cagir
+
+    @GetMapping("/status/{idAnimal}")
+    public ResponseEntity<String> getAnimalStatus(@PathVariable("idAnimal") int idAnimal) {
+        String status = animalService.getAnimalStatus(idAnimal);
+
+        if ("Status not found".equals(status)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Animal status not found");
+        } else {
+            return ResponseEntity.ok(status);
+        }
+
+    }
+    // Hayvan ID'sine göre bilgileri dönen endpoint // 4
+    @GetMapping("/info/{id}")
+    public ResponseEntity<Animal> getAnimalsById(@PathVariable("id") int idAnimal) {  // Değişken adı id olmalı
+        Optional<Animal> animal = animalService.findAnimalById(idAnimal);
+        if (animal.isPresent()) {
+            return ResponseEntity.ok(animal.get());  // Bulunan hayvan bilgilerini döner
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // Eğer hayvan bulunamazsa 404 döner
+        }
+
+    }
+        @GetMapping("/soorten/gender")
+        public ResponseEntity <List<Animal>> getAllMale(){
+        return animalService.getAllMale();
+        }
+
+
+
+
+
+
+
+
+    }
+
+
+
+

@@ -54,4 +54,13 @@ public class AdoptionRequestService {
     public void updateAdoption(AdoptionRequest adoptionRequest) {
         adoptionRequestRepository.updateAdoption(adoptionRequest);
     }
-}
+
+    // deneme 2
+    public List<AdoptionRequest> findAdoptionRequestByUSerId(int idUser) {
+        return adoptionRequestRepository.findAdoptionRequestByUSerId(idUser);
+    }
+
+
+
+
+    }

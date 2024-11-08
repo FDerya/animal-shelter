@@ -18,5 +18,11 @@ public interface AnimalDAO {
     void updateAnimal(Animal animal);
 
     List<Animal> getByType(String type);
+
+    List<Animal> getAnimalByColor(String color);
+
+
+    // deneme 3
+    String findStatusById(int idAnimal);
 }
 

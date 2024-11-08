@@ -69,13 +69,22 @@ public class AdoptionRequestController {
 
     // Endpoint to delete an adoption request by its ID.
     @DeleteMapping("/delete/{idAdoption}")
-    public  void deleteAdoption(@PathVariable int idAdoption) {
+    public void deleteAdoption(@PathVariable int idAdoption) {
         AdoptionRequest adoptionDelete = getAdoptionById(idAdoption);
         adoptionRequestService.deleteAdoption(adoptionDelete);
     }
-}
 
 
+    // deneme 2  adoption-request--> user--> idUser
+
+    @GetMapping("/user/{idUser}")
+    public ResponseEntity<List<AdoptionRequest>> findAdoptionRequestByUSerId(@PathVariable int idUser) {
+        List<AdoptionRequest> requests = adoptionRequestService.findAdoptionRequestByUSerId(idUser);
+        return ResponseEntity.ok(requests);
+    }
+
+
+    }
 
 
 

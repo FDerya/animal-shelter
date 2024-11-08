@@ -3,6 +3,7 @@ package animal.shelter.repository;
 import animal.shelter.dao.JdbcAnimalDAO;
 import animal.shelter.model.Animal;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,4 +46,27 @@ public class AnimalRepository {
     public List<Animal> findByType(String type) {
         return jdbcAnimalDAO.getByType(type);
     }
+
+
+    public List<Animal> findByAnimalColor(String color){
+        return jdbcAnimalDAO.getAnimalByColor(color);
+
+
+    }
+
+
+
+     // deneme 3
+    public String findStatusById(int idAnimal) {
+        return jdbcAnimalDAO.findStatusById(idAnimal);
+    }
+
+
+    // 4
+    public Optional<Animal> getAnimalsById (@PathVariable("id") int idAnimal){
+        return jdbcAnimalDAO.findAnimalById(idAnimal);
+
+    }
+
+
 }

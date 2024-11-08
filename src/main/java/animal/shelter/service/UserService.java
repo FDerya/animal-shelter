@@ -61,4 +61,39 @@ public class UserService {
     public void deleteUser(User user) {
         userRepository.deleteUser(user);
     }
-}
+
+//    public boolean blockUser(int id) {
+//        Optional<User> optionalUser = userRepository.findUserById(id);
+//        if (optionalUser.isPresent()) {
+//            User user = optionalUser.get();
+//            user.setBlocked(true); // Kullanıcıyı blokla
+//            userRepository.saveUser(user); // Güncellemeyi kaydet
+//            return true;
+//        } else {
+//            return false; // Kullanıcı bulunamadı
+//        }
+//
+//    }
+//        // email ile blocklama
+//        public boolean blockUserByEmail(String email) {
+//            Optional<User> optionalUser = userRepository.findByEmail(email);  // Email ile kullanıcıyı bul
+//            if (optionalUser.isPresent()) {
+//                User user = optionalUser.get();
+//                user.setBlocked(true);  // Kullanıcıyı blokla
+//                return true;
+//            } else {
+//                return false;  // Eğer kullanıcı bulunamazsa false döndür
+//            }
+//    }
+
+
+   // deneme
+    public Optional<String> findEmailById(int idUser){
+        return userRepository.findEmailById(idUser);
+    }
+
+    }
+
+
+
+

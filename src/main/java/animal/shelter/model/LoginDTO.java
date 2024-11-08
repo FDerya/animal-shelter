@@ -6,6 +6,15 @@ public class LoginDTO {
     private String password;
     private String role; // user or admin
     private String token;
+    private Boolean block;
+
+    public Boolean getBlock() {
+        return block;
+    }
+
+    public void setBlock(Boolean block) {
+        this.block = block;
+    }
 
     /**
      * Constructs a new LoginDTO with the specified details.
@@ -15,11 +24,14 @@ public class LoginDTO {
      * @param role     the role of the user (user or admin)
      * @param token    the token for authentication
      */
-    public LoginDTO(String email, String password, String role, String token) {
+    public LoginDTO(String email, String password, String role, String token, Boolean block) {
         this.email = email;
         this.password = password;
         this.role = role;
         this.token = token;
+        this.block = block;
+
+
     }
 
     // Getters and Setters

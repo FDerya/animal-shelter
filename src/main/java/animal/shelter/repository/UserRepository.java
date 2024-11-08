@@ -1,6 +1,7 @@
 package animal.shelter.repository;
 
 import animal.shelter.dao.JdbcUserDAO;
+import animal.shelter.model.LoginDTO;
 import animal.shelter.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -43,8 +44,17 @@ public class UserRepository {
         jdbcUserDAO.deleteUser(user);
     }
 
+    public void blockUser(User user) {
+        jdbcUserDAO.blockUser(user);
+    }
+
     // Finds a user by their email address.
     public Optional<User> findByEmail(String email) {
         return jdbcUserDAO.findByEmail(email);
     }
-}
+
+    // deneme
+    public Optional<String> findEmailById(int idUser){
+        return jdbcUserDAO.findEmailById(idUser);
+    }
+    }

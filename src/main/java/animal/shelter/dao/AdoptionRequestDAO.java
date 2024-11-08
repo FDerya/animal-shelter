@@ -16,4 +16,9 @@ public interface AdoptionRequestDAO {
     void deleteAdoption(AdoptionRequest adoption);
 
     void updateAdoption(AdoptionRequest adoption);
+
+    //deneme 2
+    List<AdoptionRequest> findAdoptionRequestByUSerId(int idUser);
+
+
 }

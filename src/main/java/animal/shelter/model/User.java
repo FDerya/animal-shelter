@@ -8,13 +8,17 @@ public class User {
     private String role;
 
 
+
+
     public User(int idUser, String email, String password, String role) {
         this.idUser = idUser;
         this.email = email;
         this.password = password;
         this.role = role;
 
+
     }
+
 
     public  User() {
     }
@@ -51,6 +55,8 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+
 
     @Override
     public String toString() {

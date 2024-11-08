@@ -25,14 +25,15 @@ public class JdbcAnimalDAO implements AnimalDAO {
     // Saves a new animal to the database.
     @Override
     public void saveAnimal(Animal animal) {
-        String sql = "INSERT INTO animal (name, species, age, gender, description, status) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO animal (name, species, age, gender, description, status, color) VALUES (?, ?, ?, ?, ?, ?,?)";
         jdbcTemplate.update(sql,
                 animal.getName(),
                 animal.getSpecies(),
                 animal.getAge(),
                 animal.getGender(),
                 animal.getDescription(),
-                animal.getStatus());
+                animal.getStatus(),
+                animal.getColor());
     }
 
     // Finds an animal by its ID.
@@ -81,18 +82,38 @@ public class JdbcAnimalDAO implements AnimalDAO {
         return jdbcTemplate.query(sql, new AnimalRowMapper(), type);
     }
 
+
+    @Override
+    public List<Animal> getAnimalByColor(String color) {
+        String sql = "SELECT * FROM animal WHERE color = ?";
+        return jdbcTemplate.query(sql, new AnimalRowMapper(), color);
+
+
+    }
+    // deneme 3
+    @Override
+    public String findStatusById(int idAnimal) {
+        String  sql = "SELECT status FROM animal WHERE idAnimal = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{idAnimal},String.class);
+
+    }
+
+
     // RowMapper implementation for mapping rows of a ResultSet to Animal objects.
-    private static class AnimalRowMapper implements RowMapper<Animal> {
-        @Override
-        public Animal mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Animal(
-                    rs.getInt("idAnimal"),
-                    rs.getString("name"),
-                    rs.getString("species"),
-                    rs.getInt("age"),
-                    rs.getString("gender"),
-                    rs.getString("description"),
-                    rs.getString("status"));
+        private static class AnimalRowMapper implements RowMapper<Animal> {
+            @Override
+            public Animal mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return new Animal(
+                        rs.getInt("idAnimal"),
+                        rs.getString("name"),
+                        rs.getString("species"),
+                        rs.getInt("age"),
+                        rs.getString("gender"),
+                        rs.getString("description"),
+                        rs.getString("status"),
+                        rs.getString("color"));
+            }
         }
     }
-}
+
+

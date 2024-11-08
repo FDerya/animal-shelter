@@ -10,9 +10,18 @@ public class Animal {
     private String gender;
     private String description;
     private String status;
+    private  String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     //Constructors
-    public Animal(int idAnimal, String name, String species, int age, String gender, String description, String status) {
+    public Animal(int idAnimal, String name, String species, int age, String gender, String description, String status, String  color) {
         this.idAnimal = idAnimal;
         this.name = name;
         this.species = species;
@@ -20,6 +29,7 @@ public class Animal {
         this.gender = gender;
         this.description = description;
         this.status = status;
+        this.color = color;
 
     }
 

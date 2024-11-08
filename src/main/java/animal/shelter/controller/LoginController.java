@@ -30,7 +30,9 @@ public class LoginController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
+
     }
+
 
     // Endpoint for user registration.
     // Registers a new user with the role of "user".

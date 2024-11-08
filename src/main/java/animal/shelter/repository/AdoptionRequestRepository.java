@@ -10,7 +10,8 @@ import java.util.Optional;
 
 @Repository
 public class AdoptionRequestRepository {
-
+//  veritabanına erişim için repository sınıfını kullanırsın. Bu sınıf, CRUD (Create, Read, Update, Delete) işlemlerini yapmak için hazır metotlar sunar.
+//  Örneğin, save() metodu yeni bir kayıt oluşturabilir ya da mevcut kaydı güncelleyebilir.
     private final JdbcAdoptionRequestDAO jdbcAdoptionRequestDAO;
 
     @Autowired
@@ -42,5 +43,13 @@ public class AdoptionRequestRepository {
     public void updateAdoption(AdoptionRequest adoptionRequest) {
         jdbcAdoptionRequestDAO.updateAdoption(adoptionRequest);
     }
-}
+
+    // deneme 2
+    public List<AdoptionRequest> findAdoptionRequestByUSerId(int idUser) {
+        return jdbcAdoptionRequestDAO.findAdoptionRequestByUSerId(idUser);
+    }
+
+
+    }
+
 

@@ -28,11 +28,16 @@ public class LoginService {
         if (userOptional.isPresent() && userOptional.get().getPassword().equals(password)) {
             User user = userOptional.get();
             String token = JWTUtil.generateToken(user.getIdUser(), user.getRole(), user.getEmail());
-            return new LoginDTO(email, password, user.getRole(), token);
+            return new LoginDTO(email, password, user.getRole(), token, false);
         }
 
         return null;
     }
+//
+//    public LoginDTO blockUser (LoginDTO loginDTO){
+//        userRepository.findByEmail(loginDTO.getEmail());
+//        Optional<User> userOptional = userRepository.findByEmail();
+//    }
 
     // Registers a new user if the email is not already in use.
     public String register(User user) {

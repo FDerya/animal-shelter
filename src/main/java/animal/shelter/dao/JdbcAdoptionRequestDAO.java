@@ -5,7 +5,6 @@ import animal.shelter.model.Animal;
 import animal.shelter.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -70,6 +69,13 @@ public class JdbcAdoptionRequestDAO implements AdoptionRequestDAO {
         String sql = "UPDATE adoption_request SET idUser = ?, idAnimal = ?, requestDate = ?, status = ? WHERE idAdoption = ?";
         jdbcTemplate.update(sql, adoption.getUser().getIdUser(), adoption.getAnimal().getIdAnimal(), adoption.getRequestDate(), adoption.getStatus(), adoption.getIdAdoption());
     }
+
+    // Kullanicinin id ye gore adopt request
+    public List< AdoptionRequest> findAdoptionRequestByUSerId (int idUser) {
+        String sql = "SELECT * FROM adoption_request WHERE idUser = ?";
+        return jdbcTemplate.query(sql, new AdoptionRowMapper(), idUser);
+    }
+
 
 
     // RowMapper implementation for mapping rows of a ResultSet to AdoptionRequest objects.
