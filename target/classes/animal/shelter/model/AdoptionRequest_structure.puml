@@ -1,0 +1,26 @@
+@startuml
+
+class Animal {
+  +idAnimal : int
+}
+
+class User {
+  +idUser : int
+}
+
+class Adoption {
+  +idAdoption : int
+  +idUser : int
+  +idAnimal : int
+}
+
+class LoginDTO {
+  +Token : int
+  +idUser : int
+}
+
+Animal "1" <-- "0..*" Adoption : "adopts"
+User "1" <-- "0..*" Adoption : "adopted by"
+User "1" <-- "0..*" LoginDTO : "has"
+
+@enduml

@@ -1,0 +1,7 @@
+Animal Shelter
+
+.As a user I want to be able to register for the website with my e-mail
+.As a user I want to be able to login
+.As an admin I want to be able to add an animal
+.As a user I want to be able to see a list of all available animals
+.As a user I want to be able to adopt an animal by clicking on a button
